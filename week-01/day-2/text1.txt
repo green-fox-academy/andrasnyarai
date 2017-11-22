@@ -1,0 +1,10 @@
+This file says: hey! > text1.txt
+cat text1.txt
+
+
+
+ls
+pwd
+git status
+
+
