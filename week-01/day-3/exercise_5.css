@@ -1,9 +1,21 @@
 body {
     padding-right: 60%;
 }
-oi {
-    list-style-type: "upper-roman";
+ol {
+    list-style: upper-roman;
 }
-ul > li:nth-child(4n) {
-    list-style: none;
+ul > li > ol {
+    text-decoration: underline;
+    color: rgb(255, 0, 255);
+}
+ol > li:nth-child(4n) {
+   color: black;
+   text-decoration-color: black;
+   text-decoration: inherit;
+}
+h1 {
+    color: rgb(255, 99, 71)
+}
+h2 {
+    color: rgb(138, 43, 226)
 }
