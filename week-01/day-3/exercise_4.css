@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    text-align: left;
+}
+h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: rgb(244,199,18);
+    font-size: 30px;
+}
