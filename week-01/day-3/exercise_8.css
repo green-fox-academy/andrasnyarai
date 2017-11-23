@@ -1,0 +1,33 @@
+div {
+    height: 100px;
+    background: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(66,133,244);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+span {
+    height: 50px;
+    width: 50PX;
+    background: rgb(66,133,244);
+    display: inline-block;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+#container {
+    align-content: center; /* Can be changed in the live sample */  
+  }
+  
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.back {
+    background:rgb(255,99,71);
+}
+.back span{
+    background: rgb(100,53,121);
+}
+
