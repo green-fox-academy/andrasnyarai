@@ -1,0 +1,16 @@
+body {
+    font-size: 36px;
+}
+div {
+    background: rgb(14, 145, 161);
+    width: 350px;
+    height: 144px;
+    margin: 15px;
+    padding: 5px;
+    border: 5px solid  rgb(125, 206, 148);
+}
+p {
+    margin-top: 10px;
+    margin-left: 12px;
+    opacity: 0.5;
+}

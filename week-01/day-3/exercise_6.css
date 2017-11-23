@@ -1,0 +1,31 @@
+a {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background: rgb(12, 235, 222);
+    display: inline-block;
+    text-align: -webkit-center;
+    font-weight: bold;
+    color: white;
+}
+div {
+    height: 100px;
+}
+p {
+    height:2px;
+    padding-top: 40;
+    padding-bottom: 40px;
+    margin: 0;
+}
+.away {
+    margin-bottom: 10px;
+}
+a:nth-child(n + 1) {
+    margin-right: 10px;
+}
+div[class="parent"] > a:last-child {
+    background: rgb(235, 190, 12)
+}
+div[class="away"] > a:first-child {
+    background: rgb(185, 12, 235)
+}

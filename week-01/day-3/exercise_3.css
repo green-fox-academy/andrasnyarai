@@ -1,0 +1,25 @@
+body {
+    font-size: 36px;
+    
+}
+div[class] {
+    width: 380px;
+    height: 288px;
+    border: 20px solid rgb(63, 133, 244);
+}
+p {
+    text-align: center;
+    background: rgb(230, 118, 118);
+    width: 100%;
+    height: 48px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    margin: 0;
+    color: white;
+}
+.away {
+    margin-bottom: 10px;
+}
+.red {
+    background: rgb(169, 230, 230);
+}
