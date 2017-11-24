@@ -3,17 +3,23 @@
 *{
     box-sizing: border-box;
 }
-body{
+body {
+    transform: scale(1.8,1.8);
+    transform-origin: 0 0;
+ }
+body {
     margin-left: 8%;
     margin-right: 8%;
+    background: honeydew;
+    
 }
 div {
-    width: 100%;
+    width: 626px;
     height: 1000px;
+
 }
 p {
     padding: 14px;
-    background: red;
     
 }
 p:nth-child(2), p:nth-child(3) {
@@ -29,7 +35,8 @@ p:nth-child(3) {
 }
 p:first-child {
     height: 44px;
-    
+    font-size: 24px;
+    font-weight: bold;
 }
 p:last-child {
     width: 100%; 
@@ -39,4 +46,23 @@ p:last-child {
     clear: both;
     width: 0;
     height: 0;
+}
+input, a {
+    width: 232px;
+    padding: 7px;
+    border-radius: 2px;
+    margin-top: 23;
+    margin-bottom: 13px;
+    float: left;
+    display: block;
+}
+label {
+    float: left;
+    display: block;
+    font-size: 21px;
+    line-height: 29px;
+}
+a {
+    font-size: 21px;
+    background: grey;
 }
