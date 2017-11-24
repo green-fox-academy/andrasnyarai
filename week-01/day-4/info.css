@@ -1,4 +1,8 @@
 
+
+*{
+    box-sizing: border-box;
+}
 body{
     margin-left: 8%;
     margin-right: 8%;
@@ -9,17 +13,30 @@ div {
 }
 p {
     padding: 14px;
+    background: red;
+    
 }
 p:nth-child(2), p:nth-child(3) {
-    display: inline-block;
     height: 436px;
-    width: 42%;
+    width: 50%;
+    
+}
+p:nth-child(2) {
+    float: left;
+}
+p:nth-child(3) {
+    float: right;
 }
 p:first-child {
- /*   width: 100%; */
     height: 44px;
+    
 }
 p:last-child {
-    width: 100; 
+    width: 100%; 
     height: 185px;
+}
+.clear {
+    clear: both;
+    width: 0;
+    height: 0;
 }
