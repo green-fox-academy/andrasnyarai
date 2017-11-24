@@ -1,10 +1,9 @@
-body {
-    margin-right: 388px;
-    margin-left: 30px;
+* {
+    margin: 0;
 }
 div {
-    width: 255px;
+width: 230;
 }
-span {
-    width: 344px;;
+p {
+    border: 2px solid black;
 }
