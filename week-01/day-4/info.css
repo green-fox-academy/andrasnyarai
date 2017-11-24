@@ -1,0 +1,25 @@
+
+body{
+    margin-left: 8%;
+    margin-right: 8%;
+}
+div {
+    width: 100%;
+    height: 1000px;
+}
+p {
+    padding: 14px;
+}
+p:nth-child(2), p:nth-child(3) {
+    display: inline-block;
+    height: 436px;
+    width: 42%;
+}
+p:first-child {
+ /*   width: 100%; */
+    height: 44px;
+}
+p:last-child {
+    width: 100; 
+    height: 185px;
+}
