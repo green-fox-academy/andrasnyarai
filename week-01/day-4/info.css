@@ -1,31 +1,54 @@
-
-
-*{
-    box-sizing: border-box;
-}
 body {
-    transform: scale(1.8,1.8);
-    transform-origin: 0 0;
- }
-body {
-    margin-left: 8%;
-    margin-right: 8%;
+    margin-left: 150px;
+    margin-right: 150px;
     background: honeydew;
-    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font
+}
+* {
+    margin: auto;
+}
+form {
+    width: 950px;
+}
+.clearfix {
+    clear: both;
+    padding: 0;
 }
 div {
-    width: 626px;
-    height: 1000px;
-
+    box-sizing: border-box;
+    padding: 10px;
+    background: rgb(220,214,205);
+}
+div:nth-child(2) {
+    float: left;
+}
+div:nth-child(3) {
+    float: right;
+}
+div:nth-child(1) {
+    height: 72px;
+    width: 100%;
+    background: rgb(220,214,205);
+}
+div:nth-child(2), div:nth-child(3) {
+    display: inline-block;
+    width: 50%;
+    height: 436px;
+    background: rgb(220,214,205);
+}
+div:nth-child(5) {
+    height: 202px;
+    width: 100%;
+    background: rgb(220,214,205);    
+}
+div:nth-child(6) {
+    height: 202px;
+    width: 100%;
+    background: rgb(220,214,205);    
 }
 p {
-    padding: 14px;
-    
-}
-p:nth-child(2), p:nth-child(3) {
-    height: 436px;
-    width: 50%;
-    
+    box-sizing: border-box;
 }
 p:nth-child(2) {
     float: left;
@@ -33,36 +56,247 @@ p:nth-child(2) {
 p:nth-child(3) {
     float: right;
 }
-p:first-child {
-    height: 44px;
-    font-size: 24px;
+p:nth-child(1) {
+    height: 27%;
+    width: 100%;
+    background: rgb(220,214,205);;
+}
+
+p:nth-child(2), p:nth-child(3) {
+    display: inline-block;
+    width: 50%;
+    height: 18%;
+    background: rgb(220,214,205);;
+}
+p:nth-child(5) {
+    height: 11%;
+    width: 100%;
+    background: rgb(220,214,205);;  
+}
+p:nth-child(6) {
+    height: 33%;
+    width: 100%;
+    background: rgb(220,214,205);; 
+}
+p:nth-child(7) {
+    height: 11%;
+    width: 100%;
+    background: rgb(220,214,205);;
+}
+div:nth-child(3) a {
+    display: block;
+    box-sizing: border-box;
+    width: 80%;
+    height: 9%;
+    float: left;
+    text-align: left;
+    padding-top: 7px;
+    padding-left: 8px;
+    Font-size: 18px;
+}
+div:nth-child(3) input {
+    display: block;
+    box-sizing: border-box;
+    width: 80%;
+    height: 9%;
+    float: left;
+    padding: 8px;
+
+}
+div:nth-child(3) label {
+    display: block;
+    box-sizing: border-box;
+    width: 80%;
+    float: left;
+    line-height: 237%;
+}
+p:nth-child(1) input {
+    display: block;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 37px;
+    float: right;
+    padding: 8px;
+}
+p:nth-child(1) label {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 37px;
+    float: right;
+    line-height: 237%;
+}
+p:nth-child(1) a {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 37px;
+    float: right;
+    text-align: left;
+    padding-top: 7px;
+    padding-left: 8px;
+    Font-size: 18px;
+}
+p:nth-child(1), p:nth-child(2), p:nth-child(5), p:nth-child(6), p:nth-child(7) {
+    padding-left: 83px;
+}
+p:nth-child(2) input{
+    height: 37px;
+    width: 79px;
+    box-sizing: border-box;
+    padding-left: 8px;
+}
+p:nth-child(2) label {
+    line-height: 38px;
+}
+p:nth-child(3) {
+    box-sizing: border-box;
+    display: block;
+    padding-top: 11px;
+    padding-left: 41px;
+}
+p:nth-child(3) span {
+    box-sizing: border-box;
+    display: block;
+}
+p:nth-child(3) input {
+    box-sizing: border-box;
+
+}
+p:nth-child(3) label {
+    box-sizing: border-box;
+
+}
+#push {
+    margin-left: 55px;
+}
+p:nth-child(7) span, p:nth-child(5) span {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 37px;
+    background: rgb(220,214,205);
+    float: right;
+    text-align: left;
+    padding-top:13px;
+    Font-size: 18px;
+}
+.A {
+    background: rgb(220,214,205);
+    float: left;
+    display: inline-block;
+    width: 47%;
+    height: 100%;
+    padding-left: 6px;
+    position: relative;
+}
+.B {
+    background: rgb(220,214,205);
+    float: right;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+.A input {
+    float: left;
+    display: block;
+    margin-top: 4px;
+}
+.A label {
+    float: left;
+    display: block;
+    width: 90%;
+    margin-bottom: 10px;
+    margin-left: 4px;
+}
+.B input {
+    float: left;
+    display: block;
+    margin-top: 4px;
+}
+.B label {
+    float: left;
+    display: block;
+    width: 90%;
+    margin-bottom: 10px;
+    margin-left: 4px;
+}
+.main {
+    background: rgb(147,140,151);
     font-weight: bold;
+    color: whitesmoke;
 }
-p:last-child {
-    width: 100%; 
-    height: 185px;
+#placeholder {
+    padding-left: 8px;
 }
-.clear {
-    clear: both;
-    width: 0;
+p:nth-child(1) a, p:nth-child(1) input, p:nth-child(2) input, div:nth-child(3) a, div:nth-child(3) input{
+    border-radius: 5px;
+    border: solid 0.5px rgb(147,140,151);
+}
+.r {
+    color: red;
+    line-height: 0;
     height: 0;
+    width: 100%;
+    background: none;
+    padding-left: 0;
 }
-input, a {
-    width: 232px;
-    padding: 7px;
-    border-radius: 2px;
-    margin-top: 23;
-    margin-bottom: 13px;
-    float: left;
-    display: block;
+h1 {
+    padding-left: 85px;
+    padding-top: 10px;
 }
-label {
-    float: left;
-    display: block;
-    font-size: 21px;
-    line-height: 29px;
+.A input {
+    border-radius: 15px;
+    border: solid 0.5px rgb(147,140,151);
 }
-a {
-    font-size: 21px;
-    background: grey;
+div:nth-child(3) label, p:nth-child(1) label, p:nth-child(2) label, p:nth-child(3) span,
+ p:nth-child(5) span, div:nth-child(5) label {
+    font-weight: bold; 
+}
+p:nth-child(5) span {
+    font-size: 15px;
+}
+p:nth-child(7) span {
+    font-size: 13px;
+    color: rgb(159,156,152);
+}
+h1, div:nth-child(3) label, p:nth-child(1) label, p:nth-child(2) label,
+p:nth-child(3) span, p:nth-child(3) label, p:nth-child(5) span, .A label, .B label,
+div:nth-child(5) label, div:nth-child(6){
+    color: rgb(74,66,97);
+}
+div:nth-child(5) {
+    padding-left: 94px;
+    padding-right: 94px;
+}
+div:nth-child(5) label {
+
+}
+div:nth-child(5) textarea {
+    width: 751px;
+    height: 150px;
+    border-radius: 5px;
+    margin-top: 8px;
+    border: solid 0.5px rgb(147,140,151);
+}
+textarea {
+    resize: none;
+    padding-top: 7px;
+    padding-left: 8px;
+}
+div:nth-child(6) {
+    padding-left: 94px;
+    height: 33px;
+}
+div:nth-child(7) {
+    padding-left: 94px;
+}
+div:nth-child(8) {
+    padding-left: 94px;
+}
+div:nth-child(7) input {
+    width: 220px;
+    height: 35px;
 }
