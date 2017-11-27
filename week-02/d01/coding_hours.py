@@ -8,4 +8,7 @@
 # work hours weekly is 52
 hours = 6
 semester = 17
-print((semester * 5) * hours)
+coding = (semester * 5) * hours
+print(coding)
+
+

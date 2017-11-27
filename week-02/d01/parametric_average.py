@@ -4,3 +4,13 @@
 # integers like:
 #
 # Sum: 22, Average: 4.4
+x = input("Feed the machine a number: ")
+y = input("Feed the machine a number: ")
+w = input("Feed the machine a number: ")
+z = input("Feed the machine a number: ")
+q = input("Feed the machine a number: ")
+p = input("Feed the machine a number: ")
+sum = x+y+w+z+q+p
+sum = int(sum)
+ave = sum/6
+print("Sum: "+ str(sum) + " Average: "+ str(ave))

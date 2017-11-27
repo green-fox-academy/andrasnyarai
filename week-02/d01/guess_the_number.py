@@ -5,3 +5,14 @@
 # The stored number is higher
 # The stried number is lower
 # You found the number: 8
+n = 23
+
+m = input("Guess a number: ")
+m = int(m)
+
+if m < n:
+    print("The stored number is higher")
+elif m > n:
+    print("The stored number is lower")
+elif m == n:
+    print("You found the number: " + str(n))

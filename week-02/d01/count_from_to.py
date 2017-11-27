@@ -13,8 +13,12 @@
 # 5
 fir = input("number#1: ")
 sec = input("number#2: ")
+fir = int(fir)
+sec = int(sec)
 if sec <= fir:
     print("The second number should be bigger")
-elif fir < sec:
-    for i in range(fir, sec, 1):
-    print(i)
+else:
+    fir < sec
+    while fir < sec:
+        print(fir)
+        fir += 1
