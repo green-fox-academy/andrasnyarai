@@ -11,3 +11,10 @@
 # 3
 # 4
 # 5
+fir = input("number#1: ")
+sec = input("number#2: ")
+if sec <= fir:
+    print("The second number should be bigger")
+elif fir < sec:
+    for i in range(fir, sec, 1):
+    print(i)

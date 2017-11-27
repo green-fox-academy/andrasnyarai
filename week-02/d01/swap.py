@@ -2,7 +2,9 @@
 a = 123
 b = 526
 
-a = 17
-b = 44
+c = a
+a = b
+b = c
+
 print(a)
 print(b)
