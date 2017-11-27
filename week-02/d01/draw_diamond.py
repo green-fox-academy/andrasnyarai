@@ -11,3 +11,12 @@
 #    *
 #
 # The diamond should have as many lines as the number was
+t = input("Number: ")
+a = 0
+while a <= int(t):
+  print((int(t)-a)*" ", a*"*" + (a-1)*"*")
+  a += 1
+a = 0
+while a <= int(t):
+  print(" " + a*" ", (int(t)-a-1)*"*" + ((int(t)-a-1)-1)*"*")
+  a += 1
