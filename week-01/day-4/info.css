@@ -19,11 +19,15 @@ div {
     padding: 10px;
     background: rgb(220,214,205);
 }
+div:nth-child(1) {
+    height: 80px;
+}
 div:nth-child(2) {
     float: left;
 }
 div:nth-child(3) {
     float: right;
+    padding-right: 94px;
 }
 div:nth-child(1) {
     height: 72px;
@@ -85,7 +89,7 @@ p:nth-child(7) {
 div:nth-child(3) a {
     display: block;
     box-sizing: border-box;
-    width: 80%;
+    width: 100%;
     height: 9%;
     float: left;
     text-align: left;
@@ -96,7 +100,7 @@ div:nth-child(3) a {
 div:nth-child(3) input {
     display: block;
     box-sizing: border-box;
-    width: 80%;
+    width: 100%;
     height: 9%;
     float: left;
     padding: 8px;
@@ -298,4 +302,68 @@ div:nth-child(8) {
 div:nth-child(7) input {
     width: 220px;
     height: 35px;
+}
+div:nth-child(9) {
+    padding-left: 94px;
+    height: 110px;
+    padding-right: 94px;
+}
+div:nth-child(9) input:first-child {
+    float: left;
+    display: inline-block;
+    width: 220px;
+    height: 46px;
+}
+div:nth-child(9) input:last-child {
+    float: right;
+    display: inline-block;
+    width: 160px;
+    height: 46px;
+}
+
+div:nth-child(7) input, div:nth-child(9) input:first-child, div:nth-child(9) input:last-child {
+    border-radius: 5px;
+    border: solid 0.5px rgb(147,140,151);
+    background: rgb(251,251,251);
+    color: rgb(74,66,97);
+    font-size: 15px;
+    font-weight: bold;
+}
+.link {
+    font-size: 13px;
+    color: rgb(74,66,94);
+}
+div:nth-child(9) input:first-child {
+    background: rgb(73,65,95);
+    color: rgb(220,214,215);
+    letter-spacing: 2px;
+    font-size: 17px;
+    font-weight: bold;
+}
+input[type="radio"], input[type="checkbox"] {
+    background: white;
+}
+label a {
+    color: rgb(98,98,98);
+}
+select {
+    border-radius: 5px;
+    border: solid 0.5px rgb(147,140,151);
+    width: 100%;
+    height: 9%;
+    float: left;
+    padding: 8px;
+    display: block;
+    color: rgb(74,66,97);
+    box-sizing: border-box;
+}
+input[type="checkbox"] {
+    display: none;
+}
+.A input, .B input {
+    height: 13px;
+    width: 13px;
+    border: 1px solid grey;
+    display: inline-block;
+    position: relative;
 }
