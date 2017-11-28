@@ -11,4 +11,3 @@ semester = 17
 coding = (semester * 5) * hours
 print(coding)
 
-
