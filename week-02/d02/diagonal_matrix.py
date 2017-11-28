@@ -8,17 +8,16 @@
 #
 # - Print this two dimensional list to the output
 
-a = []
-b = []
-size = 4
+l = []
 
-for i in range(size):
-   b = []
-   for j in range(size):
-       if i == j:
-           b.append(' ')
-       else:
-           b.append('#')
-   a.append(b)
+for i in range(4):
+    temp = []
+    for j in range(4):
+        if i == j:
+            temp.append('1')
+        else:
+            temp.append('0')
+    l.append(temp)
 
-print(a)
+for s in l:
+    print(*s)
