@@ -8,24 +8,17 @@
 #
 # - Print this two dimensional list to the output
 
-newlist = []
-for x in range(0, 4):
-    x = 1*x
-    innerlist = []
-    for y in range(1, 5):
-        innerlist.append(y - y)
-    newlist.append(innerlist)
+a = []
+b = []
+size = 4
 
-print(newlist)
+for i in range(size):
+   b = []
+   for j in range(size):
+       if i == j:
+           b.append(' ')
+       else:
+           b.append('#')
+   a.append(b)
 
-'''
-
-
-
-
-
-a = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
-for row in a:
-    for elem in row:
-        print(elem, end=' ')
-    print() '''
+print(a)
