@@ -5,3 +5,7 @@
 # Also, print the sentence to the output with spaces in between.
 
 words = ["What", "I", "do", "create,", "I", "cannot", "not", "understand."]
+
+words[2], words[5] = words[5], words[2]
+
+print(*words)

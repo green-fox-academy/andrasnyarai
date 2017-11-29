@@ -4,4 +4,14 @@
 
 list_of_numbers = [2, 4, 6, 8, 10, 12, 14, 16]
 
-indicator = [4, 8, 12, 16]
+marks = [4 ,8 ,12 ,16]
+
+
+x = 0
+for i in marks:
+    if i in list_of_numbers:
+        x += 1
+
+if x == 0
+    print(True)
+          

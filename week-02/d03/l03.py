@@ -6,9 +6,12 @@
 verbs = ["megy", "ver", "kapcsol", "rak", "néz"]
 preverb = "be"
 
-call = "sss"
+out = []
 
-preverb + call = th
+def create_new_verbs(q, w):
+    for k in q:
+        plus = w + k
+        out.append(plus)
+    return out
 
-print(th)
-
+print(create_new_verbs(verbs, preverb))
