@@ -15,3 +15,6 @@
 # Waits for the user input
 # Print the result
 # Exit
+
+[input("number here")] = t
+print(t)

@@ -14,12 +14,4 @@ students = [
 # create a function that takes a list of students and prints:
 # - Sum of the age of people who have lass than 5 candies
 
-
-def howmany_(l):
-    for k, v in l.item():
-        sum == 0
-        if k is 'candies':
-            sum = sum + v
-
-
-howmany_(students)
+print(students[classmates['name']])
