@@ -13,6 +13,6 @@ quote_end = quote2[3:]
 
 merge = quote_begin + fix + quote_end
 
-longquote = ' '.join(merge)
+quote = ' '.join(merge)
 
-print(longquote)
+print(quote)

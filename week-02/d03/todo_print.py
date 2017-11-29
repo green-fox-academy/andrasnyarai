@@ -11,4 +11,6 @@
 
 todoText = " - Buy milk\n"
 
+todoText = "My todo:\n" + todoText + " - Download games\n\t - Diablo"
+
 print(todoText)
