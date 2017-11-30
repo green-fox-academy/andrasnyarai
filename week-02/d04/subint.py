@@ -3,5 +3,6 @@
 # Returns an empty list if the number is not part any of the numbers in the list
 
 
-input: [1, 11, 34, 52, 61], 1
-output: [0, 1, 4]
+input = [1, 11, 34, 52, 61]
+
+num = 1
