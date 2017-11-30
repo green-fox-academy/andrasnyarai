@@ -16,14 +16,7 @@ hashmap = {
     3: "say goodbye"
 }
 
-for i in not_so_cryptic_message:
-    for k, v in hashmap.items():
-    lu = []
-        if i == k:
-        lu.append(v)
+for numbers in not_so_cryptic_message:
+    out += hashmap[numbers]+" "
 
-for k, v in hashmap.items():
-    print(k, v)
-
-print(lu)
 print(out)
