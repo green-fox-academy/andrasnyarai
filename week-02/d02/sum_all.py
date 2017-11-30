@@ -5,7 +5,7 @@
 ai = [3, 4, 5, 6, 7]
 
 all = 0
-for i in range(int(len(ai))):
+for i in range(len(ai)):
     all += ai[i]
 
 print(all)
