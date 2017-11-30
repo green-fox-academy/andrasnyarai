@@ -14,4 +14,22 @@ students = [
 # create a function that takes a list of students and prints:
 # - Sum of the age of people who have lass than 5 candies
 
-print(students[classmates['name']])
+
+
+def counting(x):
+        full = 0
+        for i in range(len(x)):
+                full += (x[i]['candies'])
+        return full 
+
+print(counting(students))
+
+
+def age(y):
+        sum = 0
+        for i in range(len(y)):
+                if (y[i]['candies']) < 5:
+                        sum += (students[i]['age'])
+        return sum
+
+print(age(students))

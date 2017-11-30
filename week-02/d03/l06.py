@@ -6,10 +6,6 @@ list_of_numbers = [2, 4, 6, 8, 10, 12, 14, 16]
 
 marks = [4 ,8 ,12 ,16]
 
-t = marks[0] in list_of_numbers, marks[1] in list_of_numbers, marks[2] in list_of_numbers, marks[3] in list_of_numbers
-
-print(all(t))
-
 def iterator(*num):
     ok = True
     for i in range(int(len(num))):

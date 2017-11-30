@@ -13,3 +13,34 @@ accounts = [
 #  - amount to transfer
 #
 # Print "404 - account not found" if any of the account numbers don't exist
+
+def search(c):
+	for i in range(len(accounts)):
+		if accounts[i]['account_number'] == c:
+			print(accounts[i]['client_name'], accounts[i]['balance'])
+
+search(23456311)
+def trans(from_a, to_b, amount_):
+	A = False
+	B = False
+	for i in range(len(accounts)):
+		if accounts[i]['account_number'] == from_a:
+			A = True
+		if accounts[i]['account_number'] == to_b:
+			B = True
+	if A and B:
+		for i in range(len(accounts)):
+			if accounts[i]['account_number'] == from_a:
+				accounts[i]['balance'] -= amount_
+			if accounts[i]['account_number'] == to_b:
+				accounts[i]['balance'] += amount_
+	else:
+		print(404)
+
+search(4113546731)
+search(23456311)
+
+trans(2345346311, 4389546731, 56231234)
+
+search(4123546731)
+search(23456311)
