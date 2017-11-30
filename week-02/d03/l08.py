@@ -15,3 +15,37 @@
 # Waits for the user input
 # Print the result
 # Exit
+
+expression = input("Type the expression in the following format <* 4 5> or <// 9 3> which means <4 * 5> or <9 // 3>  ")
+expression = expression.replace(" ", "")
+a = (expression[0])
+b = (expression[1])
+c = (expression[2])
+
+b = str(b)
+c = str(c)
+
+A = False
+B = False
+tmp = ""
+
+operators = ["+", "-", "*", "/", "%"]
+for g in operators:
+    if g == a:
+        tmp += g
+        A = True
+
+operators_ext = ["/", "*"]
+for m in operators_ext:
+    if m == b and a:
+        tmpx = ""
+        tmpx += m + m
+        B = True
+
+if A is True and B is False:
+    print(eval(b + tmp + c))
+if A is True and B is True:
+    d = (expression[3])
+    print(eval(c + tmpx + d))
+if A is False and B is False:
+    print("ERROR!")
