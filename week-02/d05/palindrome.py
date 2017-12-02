@@ -1,11 +1,11 @@
 # palindrome
 
-string = "Mountain and the river"
+string = "from the mountain"
 
-def turn(x):
+def create_palindrome(x):
     y = list(x)
     z = reversed(y)
     w = ''.join(z)
-    return w
+    return x + w
 
-print(turn(string))
+print(create_palindrome(string))

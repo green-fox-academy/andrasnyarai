@@ -4,7 +4,6 @@
 word_a = "Ne at"
 word_b = "anet"
 
-
 def compare_words(first, second):
     lower_f = str.lower(first)
     lower_s = str.lower(second)

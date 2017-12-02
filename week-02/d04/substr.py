@@ -10,6 +10,4 @@ def searching(sentence, word):
     s_index = sentence.find(word, 1)
     return s_index
     
-
-
 print(searching(input, input_word))
