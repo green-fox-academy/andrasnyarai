@@ -3,8 +3,14 @@
 # Returns an empty list if the number is not part any of the numbers in the list
 
 
-input = [1, 11, 51, 16, 17, 18, 19, 29, 21]
+input = [1, 11, 51, 16, 1, 18, 19, 29, 21]
 
-num = 1
+num = 7
+out = []
 
+def search_number_index(indicator, num_list):
+    for i in num_list:
+        out.append(str(i))
+    return [i for i, s in enumerate(out) if str(num) in s]
 
+print(search_number_index(num, input))

@@ -14,6 +14,7 @@
 t = input("Number: ")
 a = 0
 l = " "
+t = (int(t)/2) + 1
 while a <= int(t):
   print((int(t)-a)*l, a*"*" + (a-1)*"*")
   a += 1
