@@ -3,6 +3,8 @@
 # Returns an empty list if the number is not part any of the numbers in the list
 
 
-input = [1, 11, 34, 52, 61]
+input = [1, 11, 51, 16, 17, 18, 19, 29, 21]
 
 num = 1
+
+
