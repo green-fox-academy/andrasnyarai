@@ -3,9 +3,9 @@
 # Returns an empty list if the number is not part any of the numbers in the list
 
 
-input = [1, 11, 51, 16, 1, 18, 19, 29, 21]
+input = [1, 11, 50, 16, 1, 18, 19, 29, 21]
 
-num = 7
+num = 1
 out = []
 
 def search_number_index(indicator, num_list):
