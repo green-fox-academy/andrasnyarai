@@ -1,13 +1,20 @@
 import random
 
-range_user = input("Give me the maximum value of the random number: ")
+right_range = False
+while not right_range:
+    range_user = input("Give me the maximum value of the random number: ")
+    right_range = range_user.isnumeric()
+
 r = random.randint(1, int(range_user))
 win = False
 lives = 5
 print("I've the number between 1-" + str(range_user) + ". You have " + str(lives) + " lives.")
 
 while lives > 0 and not win:
-    guess = input("Make your Guess: ")
+    right_guess = False
+    while not right_guess:
+        guess = input("Make your guess: ")
+        right_guess = guess.isnumeric()
     if int(guess) == r:
         win = True
         print("Congratulations!")
