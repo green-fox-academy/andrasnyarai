@@ -15,6 +15,4 @@ def five_most_frequent(file_name):
         for o in most_common_elements:
             print(o[::-1])
 
-
-
 five_most_frequent(to_decrypt)
