@@ -4,7 +4,6 @@ import random
 delay = 1
 done = False
 
-init()
 screen = display.set_mode((640, 480))
 mouse.set_pos(640, 480)
 
