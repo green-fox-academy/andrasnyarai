@@ -8,15 +8,13 @@ canvas.pack()
 # reproduce this:
 # [https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/drawing/purple-steps-3d/r4.png]
 
-def purple_blocks(x,y):
-    initial_block = canvas.create_rectangle(x,x,y,y, fill="purple")
-
-
-
-a = 2
-x = 3
-for o in range(2,7):
-    purple_blocks((x*(a**o)),(x*(a**(o+1))))
+a = 5
+b = 15
+growth = 10
+for i in range(6):
+    steps = canvas.create_rectangle(a,a,b,b, fill="purple")
+    a += growth
+    growth += 10
+    b += growth
 
 root.mainloop()
-
