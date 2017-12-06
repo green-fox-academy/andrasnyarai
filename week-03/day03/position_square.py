@@ -10,4 +10,11 @@ canvas.pack()
 # and draws a 50x50 square from that point.
 # draw 3 squares with that function.
 
+def square_draw(x,y):
+    my_box = canvas.create_rectangle(x,y,x+50,y+50)
+
+square_draw(75,75)
+square_draw(125,125)
+square_draw(175,175)
+
 root.mainloop()

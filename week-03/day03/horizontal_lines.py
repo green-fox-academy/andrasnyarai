@@ -10,4 +10,11 @@ canvas.pack()
 # and draws a 50 long horizontal line from that point.
 # draw 3 lines with that function.
 
+def horizontal_line(x,y):
+    my_lines = canvas.create_line(x,y,x+50,y)
+
+horizontal_line(25,25)
+horizontal_line(75,75)
+horizontal_line(125,125)
+
 root.mainloop()
