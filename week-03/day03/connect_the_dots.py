@@ -14,11 +14,15 @@ canvas.pack()
 a = [[10, 10], [290,  10], [290, 290], [10, 290]]
 b = [[50, 100], [70, 70], [80, 90], [90, 90], [100, 70], [120, 100], [85, 130], [50, 100]]
 
-def connect(parameters):
-    for u in range(len(parameters)):
-        print(parameters[u] + parameters[u+1])
 
+
+
+def connect(parameters):
+    for u in range(1, len(parameters)):
+        my_lines = canvas.create_line(parameters[u-1][0],parameters[u-1][1],parameters[u][0],parameters[u][1])
+    my_lines = canvas.create_line(parameters[0][0],parameters[0][1],parameters[len(parameters)-1][0],parameters[len(parameters)-1][1])
 
 connect(a)
+connect(b)
 
 root.mainloop()
