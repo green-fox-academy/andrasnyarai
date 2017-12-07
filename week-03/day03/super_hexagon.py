@@ -18,7 +18,7 @@ for x in range(7):
     s = 30*n + q*30
     h = -(n*20)  
     for i in range(multiplication):
-        poly = canvas.create_polygon(30+s,210-h,40+s,230-h,60+s,230-h,70+s,210-h,60+s,190-h,40+s,190-h, fill="white", outline="black")
+        poly = canvas.create_polygon(40+s,210-h,50+s,230-h,70+s,230-h,80+s,210-h,70+s,190-h,50+s,190-h, fill="white", outline="black")
         h += 40
     n += 1
 

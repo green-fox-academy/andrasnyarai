@@ -11,12 +11,6 @@ l = 17
 m = 10
 rd = 20
 
-
-
-
-
-
-
 for i in range(20,260-(0*rd),20):
     move = canvas.create_line(20+(0*m)+i,236+(0*l),30+(0*m)+i,253+(0*l))
     move = canvas.create_line(30+(0*m)+i,253+(0*l),10+(0*m)+i,253+(0*l))
