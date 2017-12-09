@@ -18,15 +18,24 @@ def drawhexa(d,x,y,size):
     x + 3/2 * size, y - h,
     x + 2 * size, y,
     x + 3/2 * size, y + h,
-    x + size/2, y + h, fill="#070707", outline="#f7f7f7")
+    x + size/2, y + h, fill="black", outline="white")
 
-    drawhexa(d-1,x,y,size/3)
-    drawhexa(d-1,x + size/3,y - 2/3*h, size/3)
-    drawhexa(d-1,x + size,y - 2/3*h, size/3)
-    drawhexa(d-1,x + 4/3*size,y, size/3)
-    drawhexa(d-1,x + size/3,y + 2/3*h, size/3)
-    drawhexa(d-1,x + size,y + 2/3*h, size/3)
+    drawhexa(d-1,
+    x + size/4,
+    y - h/2,
+    size/2)
+    drawhexa(d-1,
+    x + size,
+    y,
+    size/2)
+    drawhexa(d-1,
+    x + size/4,
+    y + h/2,
+    size/2)
 
-drawhexa(5,5,300,298)
+
+
+drawhexa(6,5,300,298)
+
 
 root.mainloop()
