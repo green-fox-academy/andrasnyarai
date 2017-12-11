@@ -25,7 +25,7 @@ class BlogPost(object):
     self.text += new_strings
 
   def __str__(self):
-    return "AUTHOR {}".format(self.author_name)
+    return "AUTHOR {} | {} | {} | {}".format(self.author_name, self.title, self.text, self.publication_date)
 
   
 blog_1 = BlogPost("John Doe", "Lorem Ipsum", "2000.05.04.")

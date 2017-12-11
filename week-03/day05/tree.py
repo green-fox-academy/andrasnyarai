@@ -8,8 +8,6 @@ root = Tk()
 canvas = Canvas(root, width=1200, height=600, bg="#7FFFBF")
 canvas.pack()
 
-length = 100
-
 
 def first_line(depth, x0,y0,angle):
     if depth < 2:
