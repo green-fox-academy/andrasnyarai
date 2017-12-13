@@ -27,7 +27,7 @@ class TestExtend(unittest.TestCase):
         self.assertEqual(extend.median(['k','é','k']),'é')
 
     def test_is_vovel_a(self):
-        self.assertTrue(extend.is_vovel('Aa'))
+        self.assertTrue(extend.is_vovel('a'))
 
     def test_is_vovel_u(self):
         self.assertTrue(extend.is_vovel('u'))
@@ -36,7 +36,7 @@ class TestExtend(unittest.TestCase):
         self.assertEqual(extend.translate('bemutatkozik'), 'bevemuvutavatkovozivik')
 
     def test_translate_kolbice(self):
-        self.assertEqual(extend.translate('kolbice'), 'kovolbiviceve')
+        self.assertEqual(extend.translate('Peti áll a ház előtt'), 'Pevetivi áváll ava háváz evelővőtt')
 
 if __name__ == '__main__':
     unittest.main()

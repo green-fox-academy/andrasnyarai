@@ -29,10 +29,20 @@ class Animal(object):
     def __str__(self):
         return self.name
 
+    
+
+
 lion = Animal('lion')
+
+
 
 lion.eat()
 
+
+
 lion.drink()
 
+
+
 lion.play()
+

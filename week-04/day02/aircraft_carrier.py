@@ -62,26 +62,19 @@ class AircraftCarrier(object):
         count = 0
         for i in range(len(self.storage)):
             count += self.storage[i].max_ammo - self.storage[i].ammo
-            if self.store > count:
-                for i in range(len(self.storage)):
+        if self.store >= count:
+            for i in range(len(self.storage)):
+                self.storage[i].ammo = self.storage[i].max_ammo
+            self.store -= count
+        if self.store < count:
+            self.storage.sort(key=lambda x: x.a_type, reverse=True)
+            for i in range(len(self.storage)):
+                if self.store >= self.storage[i].max_ammo - self.storage[i].ammo:
+                    self.store -= self.storage[i].max_ammo - self.storage[i].ammo
                     self.storage[i].ammo = self.storage[i].max_ammo
-                self.store -= count
-            if self.store < count:
-                for i in range(len(self.storage)):
-                    if self.storage[i].a_type == 'F16' and self.store >= self.storage[i].max_ammo:
-                        self.storage[i].ammo = self.storage[i].max_ammo
-                        self.store = self.store - self.storage[i].max_ammo
-                    elif self.storage[i].a_type == 'F16' and 0 < self.store < self.storage[i].max_ammo:
-                        self.storage[i].ammo = self.store
-                        self.store = 0
-                if self.store > 0:
-                    for i in range(len(self.storage)):
-                        if self.storage[i].a_type == 'F35' and self.store >= self.storage[i].max_ammo:
-                            self.storage[i].ammo = self.storage[i].max_ammo
-                            self.store = self.store - self.storage[i].max_ammo
-                        elif self.storage[i].a_type == 'F35' and 0 < self.store < self.storage[i].max_ammo:
-                            self.storage[i].ammo = self.store
-                            self.store = 0
+                else:
+                    self.storage[i].ammo += self.store
+                    self.store = 0
 
     def fight(self, enemy):
         damage_counter = 0
@@ -121,28 +114,23 @@ class AircraftCarrier(object):
             for i in range(0, len(self.storage)):
                 result += self.storage[i].__str__() + "\n"
             return result
+    
+    def plusammo(self,plus):
+        self.store += plus
+
 
 f1 = Aircraft('F16', 5)
 f2 = Aircraft('F35')
 f3 = Aircraft('BBBB')
-
-print(f3.gettype())
-print(f1.fight())
-print(f1.gettype())
-print(f1.getstatus())
-print(f1.refill(50))
-print(f1.getstatus())
 
 sun = AircraftCarrier(22,1000)
 
 sun.addaircraft('F16')
 sun.addaircraft('F16')
 sun.addaircraft('F35')
+sun.addaircraft('F35')
 
-
-print(sun)
 sun.fill()
-print(sun)
 
 print(sun.getstatus())
 
@@ -151,6 +139,14 @@ pop = AircraftCarrier(10,500)
 sun.fight(pop)
 
 print(pop.getstatus())
+
+print(sun.getstatus())
+
+sun.fill()
+
+print(sun.getstatus())
+
+sun.plusammo(28)
 
 print(sun.getstatus())
 

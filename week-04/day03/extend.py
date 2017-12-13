@@ -20,15 +20,13 @@ def median(pool):
 
 # Returns true if the param is a vovel
 def is_vovel(char):
-    list_of_chars = char.split()
-    for i in list_of_chars:
-        all(str(i).lower() in 'aeiouéáőűöüóí')
     return char.lower() in 'aeiouéáőűöüóí'
 
 # Create a method that translates hungarian into the teve language
 def translate(hungarian):
-    teve = hungarian
-    for char in teve:
-        if is_vovel(char):
-            teve = (char+'v'+char).join(teve.split(char))
-    return teve
+    hun = list(hungarian)
+    for i in range(len(hun)):
+        if is_vovel(hun[i]):
+            hun[i] = str(hun[i]) + 'v' + str(hun[i])
+    return ''.join(hun)
+
