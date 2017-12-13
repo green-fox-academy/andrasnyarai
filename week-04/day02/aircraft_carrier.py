@@ -48,16 +48,6 @@ class Aircraft(object):
         return "Type "+ self.a_type + ", Ammo: " + str(self.ammo) + ", Base Damage: "+ str(self.base_damage) + ", All Damage: " + str(self.ammo*self.base_damage)
 
 
-# addAircraft
-# It should take a string as the type of the aircraft (F16 / F35) and add a new aircraft to its store
-# fill
-# It should fill all the aircraft with ammo and substract the needed ammo from the ammo storage
-# If there is not enough ammo than it should start to fill the F35 types first
-# If there is no ammo when this method is called it should throw an exception
-# fight
-# It should take another carrier as a refrence parameter and fire all the ammo from the aircrafts to it, than substract all the damage from it's health points
-# getStatus
-
 class AircraftCarrier(object):
 
     def __init__(self,store,hp):
