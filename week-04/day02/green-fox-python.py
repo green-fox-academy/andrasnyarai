@@ -1,7 +1,12 @@
-
 class Person(object):
 
-    def __init__(self, name="Jane Doe", age="30", gender="female"):
+    def __init__(self, name=None, age=None, gender=None):
+        if name is None:
+            name = "Jane Doe"
+        if age is None:
+            age = "30"
+        if gender is None:
+            gender = "female"
         self.name = name
         self.age = age
         self.gender = gender
@@ -15,8 +20,8 @@ class Person(object):
 
 class Student(Person):
 
-    def __init__(self, name="Jane Doe", age="30", gender="female", prev_org="The School of Life", skip_d=0):
-        super().__init__(name, age, gender)
+    def __init__(self, name=None, age=None, gender=None, prev_org="The School of Life", skip_d=0):
+        super(Student, self).__init__(name, age, gender,)
         self.prev_org = prev_org
         self.skip_d = skip_d
         self.goal = "Be a junior software developer."
@@ -29,7 +34,7 @@ class Student(Person):
 
 class Mentor(Person):
 
-    def __init__(self, name="Jane Doe", age="30", gender="female", level="intermediate"):
+    def __init__(self, name=None, age=None, gender=None, level="intermediate"):
         super().__init__(name, age, gender)
         if (level == "junior" or level == "intermediate" or level == "senior"):
             self.level = level
@@ -42,7 +47,7 @@ class Mentor(Person):
 
 class Sponsor(Person):
 
-    def __init__(self,  name="Jane Doe", age="30", gender="female", company="Google", hired_students=0):
+    def __init__(self, name=None, age=None, gender=None, company="Google", hired_students=0):
         super().__init__(name, age, gender)
         self.company = company
         self.hired_students = hired_students
@@ -107,6 +112,7 @@ people.append(gandhi)
 mentor = Mentor()
 people.append(mentor)
 sponsor = Sponsor()
+people.append(sponsor)
 elon = Sponsor('Elon Musk', 46, 'male', 'SpaceX')
 people.append(elon)
 student.skip_days(3)
