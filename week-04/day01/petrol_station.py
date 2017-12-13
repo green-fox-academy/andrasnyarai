@@ -11,19 +11,19 @@
 
 class Station(object):
 
-    def __init__(self,gas_amount=1000):
+    def __init__(self, gas_amount=1000):
         self.gas_amount = gas_amount
 
-    def refill(self,car):
-        car.gas_amount += car.capacity
-        self.gas_amount -= car.capacity
+    def refill(self, car):
+        self.gas_amount -= car.capacity - car.gas_amount
+        car.gas_amount += car.capacity - car.gas_amount
 
     def check_station(self):
         return self.gas_amount
 
 class Car(object):
 
-    def __init__(self,gas_amount=0,capacity=100):
+    def __init__(self, gas_amount=0, capacity=100):
         self.gas_amount = gas_amount
         self.capacity = capacity
 
@@ -31,7 +31,7 @@ class Car(object):
         return self.gas_amount
 
 oil = Station()
-bmw = Car()
+bmw = Car(30)
 
 print('initial gas station oil count: ', oil.check_station())
 print('initial car oil count: ', bmw.check_car())
