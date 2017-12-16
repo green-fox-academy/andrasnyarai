@@ -41,13 +41,7 @@ def koch_snow(depth, x0, y0, size):
 
     koch_snow(depth+1,x0 + size/3, y0 - length*3.6/16, size/3)
 
-
 koch_snow(1,300,450,300)
 
-def plus():
-    print('helo')
-    root.after(5000,plus)
 
-
-root.after('5000',plus)
 root.mainloop()
