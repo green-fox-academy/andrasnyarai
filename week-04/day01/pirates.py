@@ -1,54 +1,165 @@
-# Pirates
+import random
 
-# Create a Pirate class. While you can add other fields and methods, you must have these methods:-
+class Pirate(object):
 
-# drink_some_rum() - intoxicates the Pirate some
-# hows_it_going_mate() - when called, the Pirate replies, if drink_some_run was called:-
-# 0 to 4 times, "Pour me anudder!"
-# else, "Arghh, I'ma Pirate. How d'ya d'ink its goin?", the pirate passes out and sleeps it off.
-# If you manage to get this far, then you can try to do the following.
+    def __init__(self):
+        self.toxic = 0
+        self.sleep = 'awake'
+        self.dead = 'alive'
+        self.have_parrot = 'no bird'
+    
+    def drink_some_rum(self,rum=random.randint(0,5)):
+        if self.sleep == 'awake' and self.dead == 'alive':
+            self.toxic += rum
+            return "<glupp>"
+        if self.dead == 'dead':
+            return "he's dead"
 
-# die() - this kills off the pirate, in which case, drinkSomeRum, etc. just result in he's dead.
-# brawl(x) - where pirate fights another pirate (if that other pirate is alive) and there's a 1/3 chance, 1 dies, the other dies or they both pass out.
-# And... if you get that far...
+    def hows_it_going_mate(self):
+        if self.toxic <= 4 and self.sleep == 'awake' and self.dead == 'alive':
+            return "Pour me anudder!"
+        if self.toxic > 4 and self.sleep == 'awake' and self.dead == 'alive':
+            self.sleep = 'passed out'
+            return "Arghh, I'ma Pirate. How d'ya d'ink its goin?"
+        if self.sleep == 'passed out':
+            return "iiiiii"
+        if self.dead == 'dead':
+            return "I'm dead mate"
 
-# Add a parrot.
+    def die(self):
+        self.sleep = ''
+        self.dead = 'dead'
 
-# The Pirate Ship
+    def brawl(self, another_pirate):
+        if self.dead == 'alive' and self.sleep == 'awake' and another_pirate.dead == 'alive' and another_pirate.sleep == 'awake':
+            x = random.randint(0,2)
+            if x == 0:
+                self.sleep = ''
+                self.dead = 'dead'
+                return "No rest for the wicked"
+            if x == 1:
+                another_pirate.sleep = ''
+                another_pirate.dead = 'dead'
+                return "Nice fight bro"
+            if x == 2:
+                self.sleep = 'passed out'
+                another_pirate.sleep = 'passed out'
+                return "Touché"
+        else:
+            return "Not today"
 
-# The place for the Pirates
+    def parrot(self):
+        self.have_parrot = 'birdybird'
 
-# Create a Ship class.
-# The Ship stores Pirate-s instances in a list as the crew and has one captain who is also a Pirate.
-# When a ship is created it doesn't have a crew or a captain.
-# The ship can be filled with pirates and a captain via fill_ship() method.
-# Filling the ship with a captain and random number of pirates.
-# Ships should be represented in a nice way on command line including information about
-# captains consumed rum, state (passed out / died)
-# number of alive pirates in the crew
-# Ships should have a method to battle other ships: ship.battle(otherShip)
-# should return true if the actual ship (this) wins
-# the ship should win if its calculated score is higher
-# calculate score: Number of Alive pirates in the crew - Number of consumed rum by the captain
-# The loser crew has a random number of losses (deaths).
-# The winner captain and crew has a party, including a random number of rum :)
-# BattleApp
+    def __str__(self):
+        return "  rum consumed: " + str(self.toxic) + " status: " + self.dead + " - " + self.sleep
 
-# Create a battle_app.py file
-# Create 2 ships, fill them with pirates
-# Have a battle!
-# Armada
+class Captain(Pirate):
 
-# Create an Armada class
-# Contains Ship-s as a list
-# Have a armada.war(otherArmada) method where two armada can engage in war
-# it should work like merge sort
-# first ship from the first armada battles the first of the other
-# the loser gets skipped so the next ship comes in play from that armada
-# whichever armada gets to the end of its ships loses the war
-# return true if this is the winner
-# WarApp
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+        self.have_parrot = True
 
-# Create a war_app.py file
-# Create 2 armadas, fill them with ships
-# Have a war!
+    def __str__(self):
+        return "\nCaptain " + self.name + ", rum consumed: " + str(self.toxic) + " status: " + self.dead + " - " + self.sleep
+
+class Ship(object):
+
+    def __init__(self, name):
+        self.name = name
+        self.crew = []
+        self.cabin_office = []
+
+    def fill_ship(self, captain_name):
+        y = random.randint(10,15)
+        for i in range(y):
+            new_2pirate = Pirate()
+            new_pirate = Pirate()
+            new_pirate.drink_some_rum(random.randint(0,5))
+            new_2pirate.drink_some_rum(random.randint(0,5))
+            new_pirate.hows_it_going_mate()
+            new_2pirate.hows_it_going_mate()
+            new_pirate.brawl(new_2pirate)
+            self.crew.append(new_pirate)
+            self.crew.append(new_2pirate)
+        self.cabin_office.append(captain_name)
+
+    def battle(self, other_ship):
+
+        self.pirates_ready = 0
+        for i in range(len(self.crew)):
+            if self.crew[i].sleep == 'awake':
+                self.pirates_ready += 1
+            if self.crew[i].sleep == 'passed out':
+                self.pirates_ready += 0.5
+        for i in range(len(self.cabin_office)):
+                self.pirates_ready -= self.cabin_office[i].toxic
+
+        other_ship.pirates_ready = 0
+        for i in range(len(other_ship.crew)):
+            if other_ship.crew[i].sleep == 'awake':
+                other_ship.pirates_ready += 1
+            if other_ship.crew[i].sleep == 'passed out':
+                other_ship.pirates_ready += 0.5
+        for i in range(len(other_ship.cabin_office)):
+                other_ship.pirates_ready -= other_ship.cabin_office[i].toxic
+
+        if self.pirates_ready > other_ship.pirates_ready:
+            z = random.randint(0,len(other_ship.crew)//2)
+            other_ship.crew.sort(key=lambda x: x.dead, reverse=False)
+            for i in range(z):
+                if other_ship.crew[i].dead == 'alive':
+                    other_ship.crew[i].dead = 'dead'
+                    other_ship.crew[i].sleep = ''
+            q = random.randint(0,len(self.crew)//2)
+            self.crew.sort(key=lambda x: x.dead, reverse=False)
+            for i in range(q):
+                if self.crew[i].dead == 'alive':
+                    self.crew[i].toxic += random.randint(0,5)
+            self.cabin_office[0].toxic += random.randint(0,5)
+            return True
+
+        if self.pirates_ready < other_ship.pirates_ready:
+            z = random.randint(0,len(self.crew)//2)
+            self.crew.sort(key=lambda x: x.dead, reverse=False)
+            for i in range(z):
+                if self.crew[i].dead == 'alive':
+                    self.crew[i].dead = 'dead'
+                    self.crew[i].sleep = ''
+            q = random.randint(0,len(other_ship.crew)//2)
+            other_ship.crew.sort(key=lambda x: x.dead, reverse=False)
+            for i in range(q):
+                if other_ship.crew[i].dead == 'alive':
+                    other_ship.crew[i].toxic += random.randint(0,5)
+            other_ship.cabin_office[0].toxic += random.randint(0,5)
+            return False
+
+        if self.pirates_ready == other_ship.pirates_ready:
+            return "the captains decided to be friends"
+
+    def mutiny(self,leader):
+        del(self.cabin_office[0])
+        w = random.randint(0,len(self.crew)-1)
+        self.crew[w] = Captain(leader)
+        self.crew[w].drink_some_rum()
+        self.cabin_office.append(self.crew[w])
+        del(self.crew[w])
+
+
+    def __str__(self):
+        result = ""
+        alive_pirates = 0
+        for i in range(len(self.crew)):
+            if self.crew[i].sleep == 'awake':
+                alive_pirates += 1
+        for i in range(len(self.cabin_office)):
+            if self.cabin_office[i].sleep == 'awake':
+                alive_pirates += 1
+        for i in range(len(self.cabin_office)):
+            result += self.cabin_office[i].__str__() + "\n"
+        result += "Da crew of the " + self.name + ":\n"
+        for i in range(len(self.crew)):
+            result += self.crew[i].__str__() + "\n"
+        result += str(alive_pirates) + " pirate(s) is capable of walking"
+        return result
