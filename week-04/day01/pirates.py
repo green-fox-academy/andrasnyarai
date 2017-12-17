@@ -60,6 +60,7 @@ class Captain(Pirate):
         super().__init__()
         self.name = name
         self.have_parrot = True
+        self.parrot_power = random.randint(0,100)
 
     def __str__(self):
         return "\nCaptain " + self.name + ", rum consumed: " + str(self.toxic) + " status: " + self.dead + " - " + self.sleep
@@ -90,20 +91,20 @@ class Ship(object):
         self.pirates_ready = 0
         for i in range(len(self.crew)):
             if self.crew[i].sleep == 'awake':
-                self.pirates_ready += 1
+                self.pirates_ready += 2
             if self.crew[i].sleep == 'passed out':
-                self.pirates_ready += 0.5
+                self.pirates_ready += 1
         for i in range(len(self.cabin_office)):
-                self.pirates_ready -= self.cabin_office[i].toxic
+                self.pirates_ready -= (self.cabin_office[i].toxic)*2
 
         other_ship.pirates_ready = 0
         for i in range(len(other_ship.crew)):
             if other_ship.crew[i].sleep == 'awake':
-                other_ship.pirates_ready += 1
+                other_ship.pirates_ready += 2
             if other_ship.crew[i].sleep == 'passed out':
-                other_ship.pirates_ready += 0.5
+                other_ship.pirates_ready += 1
         for i in range(len(other_ship.cabin_office)):
-                other_ship.pirates_ready -= other_ship.cabin_office[i].toxic
+                other_ship.pirates_ready -= (other_ship.cabin_office[i].toxic)*2
 
         if self.pirates_ready > other_ship.pirates_ready:
             z = random.randint(0,len(other_ship.crew)//2)
@@ -136,7 +137,17 @@ class Ship(object):
             return False
 
         if self.pirates_ready == other_ship.pirates_ready:
-            return "the captains decided to be friends"
+            if self.cabin_office[0].toxic > other_ship.cabin_office[0].toxic:
+                return True
+            if self.cabin_office[0].toxic < other_ship.cabin_office[0].toxic:
+                return False
+            if self.cabin_office[0].toxic == other_ship.cabin_office[0].toxic:
+                if self.cabin_office[0].parrot_power > other_ship.cabin_office[0].parrot_power:
+                    return True
+                if self.cabin_office[0].parrot_power < other_ship.cabin_office[0].parrot_power:
+                    return False
+                if self.cabin_office[0].parrot_power == other_ship.cabin_office[0].parrot_power:
+                    return "evacuate to an island"
 
     def mutiny(self,leader):
         del(self.cabin_office[0])
