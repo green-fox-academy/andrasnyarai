@@ -1,5 +1,4 @@
 from render import *
-import time
 
 def happenings():
     
@@ -8,18 +7,23 @@ def happenings():
       + ">\n\u2665 " + str(box.hp)
        + "/" + str(box.max_hp)
         + "\n\u26E8 " + str(box.dp)
-         + "\n\u2694 " + str(box.sp),height=8)
+         + "\n\u2694 " + str(box.sp),height=7)
+
+    t.grid(row=0,sticky=N,pady=95)
 
     if box.have_key:
         n = Label(root, text='\u26B7')
-        n.grid(row=0,sticky=N,pady=165)
+        n.grid(row=0,sticky=N,pady=200)
+    if not box.have_key:
+        m = Label(root, text='     ')
+        m.grid(row=0,sticky=N,pady=200)
+
+    root.update_idletasks()
 
     army.mass_move()
     box.hover()
+    box.death()
 
-    t.grid(row=0,sticky=N,pady=60)
-
-    root.update_idletasks()
     root.after(1000, happenings)
 
 def on_key_press(e):
@@ -96,19 +100,12 @@ def on_key_press(e):
                     if [box.testBoxX - 72, box.testBoxY] in army.occupied:
                         box.attack('L')
 
-army.spawn(area.random_generate,area.area)
-area.draw_matrix()
-box.draw(canvas)
-try:
-    army.draw_item()
-except IndexError:
-    pass
 
 root.update_idletasks()
 
 canvas.bind("<KeyPress>", on_key_press)
 canvas.focus_set()
-canvas.grid(row=0, column=1, rowspan=4)
+canvas.grid(row=0, column=1, rowspan=4, pady=25)
 
 root.after(1000, happenings)
 root.mainloop()

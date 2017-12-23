@@ -1,48 +1,50 @@
 import random
 from tkinter import *
 from PIL import Image, ImageTk
+import time
 
 root = Tk()
+root.attributes("-fullscreen", True)
 canvas = Canvas(root, width=720, height=720)
 
-hero_u = PhotoImage(file='hero-up.png')
-hero_d = PhotoImage(file='hero-down.png')
-hero_l = PhotoImage(file='hero-left.png')
-hero_r = PhotoImage(file='hero-right.png')
-hero_u_k = PhotoImage(file='hero_up_k.png')
-hero_d_k = PhotoImage(file='hero_down_k.png')
-hero_l_k = PhotoImage(file='hero_left_k.png')
-hero_r_k = PhotoImage(file='hero_right_k.png')
+hero_u = PhotoImage(file='assets/hero-up.png')
+hero_d = PhotoImage(file='assets/hero-down.png')
+hero_l = PhotoImage(file='assets/hero-left.png')
+hero_r = PhotoImage(file='assets/hero-right.png')
+hero_u_k = PhotoImage(file='assets/hero_up_k.png')
+hero_d_k = PhotoImage(file='assets/hero_down_k.png')
+hero_l_k = PhotoImage(file='assets/hero_left_k.png')
+hero_r_k = PhotoImage(file='assets/hero_right_k.png')
 
-img = PhotoImage(file='floor.png')
-img_wall = PhotoImage(file='wall.png')
-wall_critter1 = PhotoImage(file='wall_critter1.png')
-crawler = PhotoImage(file='crawler.png')
-blob = PhotoImage(file='blob.png')
+img = PhotoImage(file='assets/floor.png')
+img_wall = PhotoImage(file='assets/wall.png')
+wall_critter1 = PhotoImage(file='assets/wall_critter1.png')
+crawler = PhotoImage(file='assets/crawler.png')
+blob = PhotoImage(file='assets/blob.png')
 
-jungle = PhotoImage(file='jungle_floor.png')
-jungle_wall = PhotoImage(file='jungle_wall.png')
-jungle_wall_c = PhotoImage(file='jungle_wall_c.png')
-eye = PhotoImage(file='eye.png')
-summoner = PhotoImage(file="summoner.png")
+jungle = PhotoImage(file='assets/jungle_floor.png')
+jungle_wall = PhotoImage(file='assets/jungle_wall.png')
+jungle_wall_c = PhotoImage(file='assets/jungle_wall_c.png')
+eye = PhotoImage(file='assets/eye.png')
+summoner = PhotoImage(file="assets/summoner.png")
 
-desert = PhotoImage(file='floor_desert.png')
-desert_wall = PhotoImage(file='wall_desert.png')
-desert_wall_c = PhotoImage(file='wall_desert_critter.png')
-axeman = PhotoImage(file="axeman.png")
-goblin = PhotoImage(file='goblin.png')
+desert = PhotoImage(file='assets/floor_desert.png')
+desert_wall = PhotoImage(file='assets/wall_desert.png')
+desert_wall_c = PhotoImage(file='assets/wall_desert_critter.png')
+axeman = PhotoImage(file='assets/axeman.png')
+goblin = PhotoImage(file='assets/goblin.png')
 
-tesseract_floor = PhotoImage(file='tesseract_floor.png')
-tesseract_wall = PhotoImage(file='tesseract_wall.png')
-tesseract_wall_c = PhotoImage(file='tesseract_wall_c.png')
-knight = PhotoImage(file='knight.png')
-wizard = PhotoImage(file='wizard.png')
+tesseract_floor = PhotoImage(file='assets/tesseract_floor.png')
+tesseract_wall = PhotoImage(file='assets/tesseract_wall.png')
+tesseract_wall_c = PhotoImage(file='assets/tesseract_wall_c.png')
+knight = PhotoImage(file='assets/knight.png')
+wizard = PhotoImage(file='assets/wizard.png')
 
-maze_floor = PhotoImage(file='maze_floor.png')
-maze_wall = PhotoImage(file='maze_wall.png')
-maze_wall_c = PhotoImage(file='maze_wall_c.png')
-cubix = PhotoImage(file='cubix.png')
-koch = PhotoImage(file='koch.png')
+maze_floor = PhotoImage(file='assets/maze_floor.png')
+maze_wall = PhotoImage(file='assets/maze_wall.png')
+maze_wall_c = PhotoImage(file='assets/maze_wall_c.png')
+cubix = PhotoImage(file='assets/cubix.png')
+koch = PhotoImage(file='assets/koch.png')
 
 grid = [[0,0,0,1,0,1,0,0,0,0],
         [0,0,0,1,0,1,0,1,1,0],
@@ -54,6 +56,8 @@ grid = [[0,0,0,1,0,1,0,0,0,0],
         [0,0,0,0,0,1,1,0,1,0],
         [0,1,1,1,0,0,0,0,0,0],
         [0,0,0,1,0,0,1,0,0,0]]
+
+#  random generate grid
 
 class Map(object):
 
@@ -70,6 +74,7 @@ class Map(object):
 
         self.area = 1
         self.random_generate = 3
+        self.speed = 1000
 
     def load_next_level(self):
         k = random.randint(0, 10)
@@ -121,22 +126,27 @@ class Map(object):
             self.creep = cubix
             self.boss = koch
             self.assets = 0
+        splash = Frame(root,bg="white", width=720, height=720)
+        # level = Label(splash, text="n e x t  l e v e l")
+        # level.grid()
+        splash.grid(row=0, column=1, rowspan=4, pady=25)
+        root.update_idletasks()
+        time.sleep(0.3)
+        splash.lower()
         army.spawn(area.random_generate, area.area)
         area.draw_matrix()
-        try:
-            army.draw_item()
-        except IndexError:
-            pass
+        army.draw_item()
         box.draw(canvas)
 
     def draw_matrix(self):
-        u = random.randint(0,9)
+        u = random.randint(0, 9)
+        h = random.randint(0, 9)
         cell_size = 72
         critter = True
         for j in range(10):
             for i in range(10):
                 if self.matrix[i][j] == 0:
-                    canvas.create_image(36 + cell_size * j, 36 + cell_size * i, image=self.floor)
+                        canvas.create_image(36 + cell_size * j, 36 + cell_size * i, image=self.floor)
                 elif self.matrix[i][j] == 1:
                     if i == u and critter:
                         canvas.create_image(36 + cell_size * j, 36 + cell_size * i, image=self.wall_critter)
@@ -196,6 +206,8 @@ class Box(object):
         del(army.lvl[__who__])
         del(army.positions[__who__])
         if self.have_key and self.boss_dead:
+            root.update_idletasks()
+            time.sleep(0.5)
             area.load_next_level()
 
     def attack(self, attr):
@@ -205,13 +217,11 @@ class Box(object):
             canvas.itemconfigure(box.picture, image = box.imagestrikeup)
             self.kill_and_load(index)
 
-
         if attr is 'R':
             index = army.occupied.index([self.testBoxX + 72, self.testBoxY])
             self.battle(army.lvl[index])
             canvas.itemconfigure(box.picture, image = box.imagestrikeright)
             self.kill_and_load(index)
-
 
         if attr is 'D':
             index = army.occupied.index([self.testBoxX, self.testBoxY + 72])
@@ -236,10 +246,9 @@ class Box(object):
             if 2*d + actual_enemy.sp > self.dp and not strike:
                 self.hp -= 2*d + actual_enemy.sp - self.dp
                 strike = True
-            if self.hp < 0:
+            if self.hp <= 0:
                 fight = False
-                # hero die
-            if actual_enemy.hp < 0:
+            if actual_enemy.hp <= 0:
                 fight = False
                 if d > 3:
                     self.level_up()
@@ -247,6 +256,17 @@ class Box(object):
     def hover(self):
         if [self.a, self.b] in army.positions:
             self.hp -= 5
+
+    def death(self):
+        if self.hp <= 0:
+            splash_die = Frame(root,bg="black", width=720, height=720)
+            # level = Label(splash, text="g a m e  o v e r")
+            # level.grid()
+            splash_die.grid(row=0, column=1, rowspan=4, pady=25)
+            root.update_idletasks()
+            time.sleep(0.5)
+            # retry
+            canvas.destroy()
 
 box = Box()
 
@@ -285,9 +305,6 @@ class Enemy(object):
         self.testBoxX += (coordinates[1])*72
         self.a = coordinates[0]
         self.b = coordinates[1]
-        # print(coordinates[0])
-        # print(coordinates[1])
-        # return [self.testBoxX, self.testBoxY]
 
     def draw(self, canvas):
         self.image = canvas.create_image(self.testBoxX, self.testBoxY, image=self.main_image)
@@ -297,7 +314,6 @@ class Enemy(object):
 
     def move(self):
 
-        print(army.positions)
         movements = []
 
         up = self.move_up()
@@ -318,7 +334,6 @@ class Enemy(object):
             return
         else:
             t = random.randint(0,len(movements)-1)
-            # print(t)
             destination = movements[t]
             if destination == 'U':
                 canvas.move(self.image, 0, -72)
