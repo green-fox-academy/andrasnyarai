@@ -2,6 +2,7 @@ import random
 from tkinter import *
 from PIL import Image, ImageTk
 import time
+from random import shuffle
 
 root = Tk()
 root.attributes("-fullscreen", True)
@@ -45,24 +46,40 @@ maze_wall = PhotoImage(file='assets/maze_wall.png')
 maze_wall_c = PhotoImage(file='assets/maze_wall_c.png')
 cubix = PhotoImage(file='assets/cubix.png')
 koch = PhotoImage(file='assets/koch.png')
-
-grid = [[0,0,0,1,0,1,0,0,0,0],
-        [0,0,0,1,0,1,0,1,1,0],
-        [0,1,1,1,0,1,0,1,1,0],
-        [0,0,0,0,0,1,0,0,0,0],
-        [1,1,1,1,0,1,1,1,1,0],
-        [0,1,0,1,0,0,0,0,1,0],
-        [0,1,0,1,0,1,1,0,1,0],
-        [0,0,0,0,0,1,1,0,1,0],
-        [0,1,1,1,0,0,0,0,0,0],
-        [0,0,0,1,0,0,1,0,0,0]]
-
-#  random generate grid
-
+ 
+def maze_maker(maze):
+    for _times_ in range(10):
+        while len(maze[_times_]) <= 9:
+            d = random.randint(0,4)
+            if d == 0:
+                r = 0
+            else:
+                r = 1
+            maze[_times_].append(r)
+    maze[0][0] = 0
+    for row in range(10):
+        for col in range(10):
+            if row == 9 and col == 9:
+                return maze
+            if row == 9:
+                if maze[row][col] == 0:
+                    maze[row][col + 1] = 0
+            else:
+                if col == 9:
+                    if maze[row][col] == 0:
+                        maze[row + 1][col] = 0
+                else:
+                    if maze[row][col] == 0:
+                        d = random.randint(0,1)
+                        if d == 0:
+                            maze[row][col + 1] = 0
+                        if d == 1:
+                            maze[row + 1][col] = 0
+ 
 class Map(object):
 
-    def __init__(self, matrix):
-        self.matrix = matrix
+    def __init__(self):
+        self.matrix = [[],[],[],[],[],[],[],[],[],[]]
 
         self.floor = img
         self.wall = img_wall
@@ -75,6 +92,7 @@ class Map(object):
         self.area = 1
         self.random_generate = 3
         self.speed = 1000
+        self.matrix = maze_maker(self.matrix)
 
     def load_next_level(self):
         k = random.randint(0, 10)
@@ -95,6 +113,8 @@ class Map(object):
         self.assets += 1
         self.area += 1
         self.random_generate += 1
+        self.matrix = [[],[],[],[],[],[],[],[],[],[]]
+        self.matrix = maze_maker(self.matrix)
         if self.assets == 1:
             self.floor = img
             self.wall = img_wall
@@ -154,7 +174,7 @@ class Map(object):
                     else:
                         canvas.create_image(36 + cell_size * j, 36 + cell_size * i, image=self.wall)
 
-area = Map(grid)
+area = Map()
 
 class Box(object):
 
@@ -294,7 +314,7 @@ class Enemy(object):
         while enemy_random_location:
             z = random.randint(0,9)
             x = random.randint(1,9)
-            if grid[z][x] == 0 and [z,x] not in army.positions:
+            if area.matrix[z][x] == 0 and [z,x] not in army.positions:
                 enemy_random_location = False
                 return [z,x]
 
@@ -357,7 +377,7 @@ class Enemy(object):
             return 
         if [self.a - 1,self.b] in army.positions:
             return
-        if grid[self.a - 1][self.b] == 1:
+        if area.matrix[self.a - 1][self.b] == 1:
             return
         else:
             return True
@@ -367,7 +387,7 @@ class Enemy(object):
             return
         if [self.a + 1,self.b] in army.positions:
             return
-        if grid[self.a + 1][self.b] == 1:
+        if area.matrix[self.a + 1][self.b] == 1:
             return
         else:
             return True
@@ -377,7 +397,7 @@ class Enemy(object):
             return
         if [self.a,self.b - 1] in army.positions:
             return
-        if grid[self.a][self.b - 1] == 1:
+        if area.matrix[self.a][self.b - 1] == 1:
             return
         else:
             return True
@@ -387,7 +407,7 @@ class Enemy(object):
             return
         if [self.a,self.b + 1] in army.positions:
             return
-        if grid[self.a][self.b + 1] == 1:
+        if area.matrix[self.a][self.b + 1] == 1:
             return
         else:
             return True

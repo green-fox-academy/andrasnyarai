@@ -13,10 +13,10 @@ def happenings():
 
     if box.have_key:
         n = Label(root, text='\u26B7')
-        n.grid(row=0,sticky=N,pady=200)
+        n.grid(row=0,sticky=N,pady=195)
     if not box.have_key:
         m = Label(root, text='     ')
-        m.grid(row=0,sticky=N,pady=200)
+        m.grid(row=0,sticky=N,pady=195)
 
     root.update_idletasks()
 
@@ -29,7 +29,7 @@ def happenings():
 def on_key_press(e):
 
     if e.keycode == 38:
-        if grid[box.a - 1][box.b] == 1:
+        if area.matrix[box.a - 1][box.b] == 1:
             canvas.itemconfigure(box.picture, image = box.imageup)
             return None
         if box.testBoxY == 36:
@@ -46,7 +46,7 @@ def on_key_press(e):
         if box.testBoxY == 684:
             canvas.itemconfigure(box.picture, image = box.imagedown)
             return None
-        if grid[box.a + 1][box.b] == 1:
+        if area.matrix[box.a + 1][box.b] == 1:
             canvas.itemconfigure(box.picture, image = box.imagedown)
             return None
         else:
@@ -57,7 +57,7 @@ def on_key_press(e):
             box.hover()
 
     elif e.keycode == 37:
-        if grid[box.a][box.b - 1] == 1:
+        if area.matrix[box.a][box.b - 1] == 1:
             canvas.itemconfigure(box.picture, image = box.imageleft)
             return None
         if box.testBoxX == 36:
@@ -74,7 +74,7 @@ def on_key_press(e):
         if box.testBoxX == 684:
             canvas.itemconfigure(box.picture, image = box.imageright)
             return None
-        if grid[box.a][box.b + 1] == 1:
+        if area.matrix[box.a][box.b + 1] == 1:
             canvas.itemconfigure(box.picture, image = box.imageright)
             return None
         else:
