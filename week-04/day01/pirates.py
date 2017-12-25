@@ -157,7 +157,6 @@ class Ship(object):
         self.cabin_office.append(self.crew[w])
         del(self.crew[w])
 
-
     def __str__(self):
         result = ""
         alive_pirates = 0

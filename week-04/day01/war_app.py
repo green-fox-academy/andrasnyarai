@@ -14,9 +14,9 @@ class Armada(object):
     def war(self,other_armada):
         for i in range(len(self.army_of_ships) + len(other_armada.army_of_ships)):
             if len(self.army_of_ships) == 0:
-                return "Win"
-            if len(other_armada.army_of_ships) == 0:
                 return "Lose"
+            if len(other_armada.army_of_ships) == 0:
+                return "Win"
             war =  self.army_of_ships[0].battle(other_armada.army_of_ships[0])
             if war == True:
                 self.win.append(self.army_of_ships[0])
@@ -63,7 +63,7 @@ snake_eyes = Armada("green circle on black")
 snake_eyes.recruit_ships(the_flamingo)
 snake_eyes.recruit_ships(blazing_howl)
 
-print('csata:')
+print('battle:')
 print(royal_bermuda.war(snake_eyes))
 print('royal lose')
 print(royal_bermuda.lose)
