@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.item {
+    width: 170px;
+    height: 170px;
+    float: left;
+}
+.green{
+    background: rgb(81, 212, 0);
+}
+.yellow{
+    background: rgb(255, 214, 42);
+}
+.purple{
+    background: rgb(176, 42, 255);
+}

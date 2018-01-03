@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.item {
+    width: 25%;
+    height: 170px;
+    float: left;
+    display: inline;
+}
+.green{
+    background: rgb(81, 212, 0);
+}
+.yellow{
+    width: 50%;
+    background: rgb(255, 214, 42);
+}
+.purple{
+    background: rgb(176, 42, 255);
+}
