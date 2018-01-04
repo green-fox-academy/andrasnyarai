@@ -71,3 +71,12 @@ p {
 .button:hover > .green_a {
     color: green;
 }
+.arrow {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid black;
+    transform: translateX(-100px)
+}
