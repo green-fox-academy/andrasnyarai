@@ -80,3 +80,32 @@ p {
     border-left: 20px solid black;
     transform: translateX(-100px)
 }
+.move {
+    z-index: 1;
+}
+.board {
+    background: yellow;
+}
+
+.button:hover > .move {
+    animation: walking 10s infinite;
+    transition: all 1s ease-in-out;
+}
+.button:hover ~ .board {
+    background: purple;
+}
+
+@keyframes walking {
+    0% {
+        color: white;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(200px);
+        color: black;
+    }
+    100% {
+        color: white;
+        transform: translateX(0);
+    }
+}
