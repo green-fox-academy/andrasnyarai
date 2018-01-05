@@ -59,3 +59,33 @@ a > span {
     color: white;
     font-size: 40px;
 }
+div.diff {
+    background: pink;
+}
+input:checked + .container > div {
+    background: yellowgreen;
+}
+.queen {
+    position: absolute;
+    font-size: 40px;
+    top: 15px;
+    animation: around 10s infinite;
+}
+
+@keyframes around {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translateX(690px);
+    }
+    50%{
+        transform: translate(690px, 515px);
+    }
+    75% {
+        transform: translate(0, 515px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
