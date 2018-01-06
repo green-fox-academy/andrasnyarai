@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0 auto;
+    width: 100%;
+    height: 4000px;
+    margin-top: 5%;
+}
+header {
+    background: darkcyan;
+    height: 10%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+.container {
+    background: honeydew;
+    height: 97%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 2fr 1fr 1.5fr 1fr;
+    grid-template-areas:
+    "features features"
+    "stories stories"
+    "reel reel"
+    "magazine magazine"
+    "extra extra";
+}
+footer {
+    background: yellowgreen;
+    height: 3%;
+}
+.features {
+    grid-area: features;
+    display: flex;
+    flex-direction: row;
+}
+.features > div {
+    height: 100%;
+}
+.features > div:first-child {
+    background: purple;
+    width: 70%;
+}
+.features > div:last-child {
+    background: pink;
+    width: 30%;
+}
+.stories {
+    grid-area: stories;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.stories > div:first-child {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+h2 {
+    justify-self: flex-start;
+}
+.stories > div > button {
+    width: 33%;
+}
+button {
+    height: 3em;
+    width: 10%;
+}
+.wrapper {
+    height: 80%;
+    width: 90%;
+    display: grid;
+    background: goldenrod;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.reel {
+    grid-area: reel;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reel > div:first-child {
+    background: navy;
+    height: 15%;
+    width: 90%;
+}
+.reel > div:last-child {
+    height: 75%;
+    background: navajowhite;
+    width: 90%;
+}
+.magazine {
+    grid-area: magazine;
+    display: flex;
+    flex-direction: column;
+    grid-auto-rows: 20%;
+}
+.magazine > div:first-child {
+    background: firebrick;
+    height: 30%;
+    width: 100%;
+}
+.magazine > div:last-child {
+    background: aquamarine;
+    height: 50%;
+    width: 100%;
+}
+.extra {
+    grid-area: extra;
+    display: flex;
+    flex-direction: row;
+}
+.extra > div:first-child {
+    background: purple;
+    width: 30%;
+    height: 100%;
+}
+.extra > div:last-child {
+    background: pink;
+    width: 70%;
+    height: 90%;
+    align-self: flex-end;
+}
+.container > * {
+    height: 100%;
+}

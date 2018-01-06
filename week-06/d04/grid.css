@@ -3,6 +3,7 @@ body {
     width: 800px;
     height: 600px;
     text-align: center;
+    position: relative;
 }
 .container {
     background: black;
@@ -65,10 +66,22 @@ div.diff {
 input:checked + .container > div {
     background: yellowgreen;
 }
-.queen {
+.king {
     position: absolute;
     font-size: 40px;
     top: 15px;
+}
+.queen {
+    position: absolute;
+    font-size: 40px;
+    top: 55px;
+    left: 75px;
+}
+input:checked + .king {
+    animation: around 10s infinite;
+}
+
+input:checked + .queen {
     animation: around 10s infinite;
 }
 
