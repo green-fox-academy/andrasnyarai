@@ -26,7 +26,7 @@ header {
     grid-template-columns: 1fr 11fr 1.5fr;
     justify-items: center;
     align-items: center;
-    z-index: 1;
+    z-index: 6;
 }
 header > div:nth-child(1){
     width: 100%;
@@ -52,7 +52,11 @@ header > div:nth-child(3) {
 header > div:nth-child(3) i{
     margin-left: 1em;
 }
-
+.fix {
+    overflow: hidden;
+    padding-top: 79px;
+    margin-top: -79px;
+}
 /* main */
 
 .container {
@@ -82,9 +86,12 @@ h2 {
 /* 1st block */
 
 .features {
+    /* padding-top: 80px;
+    margin-top: -80px; */
     grid-area: features;
     display: flex;
     flex-direction: row;
+    z-index: 5;
 }
 .features > div {
     height: 100%;
@@ -106,7 +113,7 @@ h2 {
     grid-template-rows: 5% 40% 5% 28% 5%;
     align-content: center;
     align-items: center;
-    padding-left: 3.5em; 
+    padding-left: 15%; 
 }
 .features > div:last-child > div:first-child > p:first-of-type {
     color: #515151;
@@ -161,6 +168,7 @@ h2 {
 /* 2nd block */
 
 .stories {
+    z-index: 4;
     grid-area: stories;
     display: grid;
     grid-template-rows: 1fr 4.5fr 1fr;
@@ -259,7 +267,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(3, 1fr);
-    padding: 2em;
+    padding: 5%;
     color: #fff;
     align-items: center;
 }
@@ -294,6 +302,7 @@ button {
 /* 3rd block */
 
 .reel {
+    z-index: 3;
     grid-area: reel;
     display: flex;
     flex-direction: column;
@@ -335,7 +344,7 @@ button {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 3fr repeat(3, 1fr) 3fr;
-    padding-left: 3em;
+    padding-left: 7.5%;
     align-items: center;
 }
 .reel > div:last-child p {
@@ -360,6 +369,7 @@ button {
 /* 4th block */
 
 .magazine {
+    z-index: 2;
     grid-area: magazine;
     display: flex;
     flex-direction: column;
@@ -401,7 +411,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 2fr 2fr;
-    padding-left: 3em;
+    padding-left: 10%;
     align-items: center;
 }
 .magazine > div:last-child p {
@@ -439,6 +449,7 @@ button {
 /* 5th block */
 
 .extra {
+    z-index: 2;
     grid-area: extra;
     display: flex;
     flex-direction: row;
@@ -458,7 +469,7 @@ button {
     grid-template-rows: 5% 30% 4% 8% 26% 5%;
     align-content: center;
     align-items: center;
-    padding-left: 3.5em; 
+    padding-left: 5%; 
 }
 .extra > div:first-child > p:first-of-type {
     color: #515151;
