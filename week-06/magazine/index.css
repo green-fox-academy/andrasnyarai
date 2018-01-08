@@ -7,17 +7,56 @@ body {
     margin: 0 auto;
     width: 100%;
     height: 4000px;
-    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    font-family: 'Alegreya Sans', sans-serif;
 }
+
+/* navigation bar */
+
 header {
-    background: darkcyan;
-    height: 10%;
+    background: #fff;
+    color: #414141;
+    height: 80px;
     width: 100%;
     position: fixed;
     top: 0;
+    display: grid;
+    grid-template-columns: 1fr 11fr 1.5fr;
+    justify-items: center;
+    align-items: center;
+    z-index: 1;
 }
+header > div:nth-child(1){
+    width: 100%;
+    height: 100%;
+    border-right: 0.1em solid #f3f3f3;
+    background-repeat: no-repeat;
+    background-size: 90% 90%;
+    object-fit: fill;
+    background-position: center;
+    background-image: url('assets/tree_logo.png');
+}
+header > div:nth-child(2) > a {
+    margin-right: 2em;
+}
+header > div:nth-child(3) {
+    width: 100%;
+    height: 100%;
+    background: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header > div:nth-child(3) i{
+    margin-left: 1em;
+}
+
+/* main */
+
 .container {
-    background: honeydew;
+    background: #fff;
     height: 97%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -29,10 +68,19 @@ header {
     "magazine magazine"
     "extra extra";
 }
-footer {
-    background: yellowgreen;
-    height: 3%;
+h1 {
+    color: #fff;
+    font-size: 3em;
+    font-family: 'Julius Sans One', cursive;
 }
+h2 {
+    color: #000;
+    font-size: 2.5em;
+    font-family: 'Julius Sans One', cursive;
+}
+
+/* 1st block */
+
 .features {
     grid-area: features;
     display: flex;
@@ -46,21 +94,86 @@ footer {
     width: 70%;
 }
 .features > div:last-child {
-    background: pink;
-    width: 30%;
-}
-.stories {
-    grid-area: stories;
     display: flex;
     flex-direction: column;
+    width: 30%;
+}
+.features > div:last-child > div:first-child {
+    width: 100%;
+    height: 80%;
+    background: #1f1f1f;
+    display: grid;
+    grid-template-rows: 5% 40% 5% 28% 5%;
+    align-content: center;
+    align-items: center;
+    padding-left: 3.5em; 
+}
+.features > div:last-child > div:first-child > p:first-of-type {
+    color: #515151;
+    font-weight: bolder;
+    letter-spacing: 1em;
+}
+.features > div:last-child > div:first-child > div{
+    width: 60%;
+    background: #fff;
+    height: 20%;
+}
+.features > div:last-child > div:first-child > p:last-of-type {
+    width: 75%;
+    line-height: 1.5em;
+    color: #fff;
+}
+.features > div:last-child > div:first-child > a {
+    color: #fff;
+    letter-spacing: 0.1em;
+}
+.features > div:last-child > div:first-child > a > i {
+    margin-left: 1em;
+}
+.features > div:last-child > div:last-child {
+    width: 100%;
+    height: 20%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.05em;
+    background: #7c7c7c;
+}
+.features > div:last-child > div:last-child > a {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    text-align: center;
+    border-bottom: 0.05em solid #7c7c7c;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+.features > div:last-child > div:last-child p {
+    color: #676767;
+}
+.features > div:last-child > div:last-child a:first-child i {
+    margin-right: 1em;
+}
+.features > div:last-child > div:last-child a:last-child i {
+    margin-left: 1em;
+}
+
+/* 2nd block */
+
+.stories {
+    grid-area: stories;
+    display: grid;
+    grid-template-rows: 1fr 4.5fr 1fr;
+    justify-items: center;
+    align-items: center;
+    background: linear-gradient(to right, #f6f6f6 50%, #fff 50%);
 }
 .stories > div:first-child {
     width: 90%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    margin-top: 5%;
 }
 h2 {
     justify-self: flex-start;
@@ -68,60 +181,314 @@ h2 {
 .stories > div > button {
     width: 33%;
 }
+.stories > div > button > i {
+    margin-left: 0.5em;
+}
 button {
     height: 3em;
     width: 10%;
+    color: #7c7c7c;
+    background: #fff;
+    border: 0.1em solid #7c7c7c;
 }
 .wrapper {
-    height: 80%;
+    height: 100%;
     width: 90%;
-    display: grid;
-    background: goldenrod;
     margin-top: 3%;
     margin-bottom: 3%;
+    display: grid;
+    grid-gap: 3%;
+    grid-template-areas:
+    "first second third"
+    "video video fourth"
 }
+.first {
+    grid-area: first;
+}
+.second {
+    grid-area: second;
+}
+.third {
+    grid-area: third;
+}
+.fourth {
+    grid-area: fourth;
+}
+.video {
+    grid-area: video;
+}
+.stories > .wrapper > div > div:first-child {
+    background: olive;
+    width: 100%;
+    height: 80%;
+}
+.stories > .wrapper > div > div:last-child {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+}
+.stories > .wrapper > div > div:last-child > p {
+    margin-top: 0.5em;
+    padding-left: 0.2em;
+}
+.stories > .wrapper > div > div:last-child > p:first-of-type {
+    color: #515151;
+}
+.stories > .wrapper > div > div:last-child > p:last-of-type {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+.stories > .wrapper > div > div:last-child > p:first-of-type > i {
+    margin-right: 0.5em;
+}
+.stories > .wrapper > div > div:last-child > p:last-of-type > i {
+    margin-left: 0.5em;
+}
+.stories > .wrapper > .video > div:first-child {
+    position: relative;
+    background: red;
+    width: 100%;
+    height: 100%;
+}
+.stories > .wrapper > .video > div > div {
+    position: absolute;
+    transform: translateY(15em);
+    width: 100%;
+    height: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    padding: 2em;
+    color: #fff;
+    align-items: center;
+}
+.stories > .wrapper > .video > div > div > p:first-of-type {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+.stories > .wrapper > .video > div > div > p:last-of-type {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    color: #515151;
+    letter-spacing: 0.5em;
+}
+.stories > .wrapper > .video > div > div > h2 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    font-size: 2em;
+    color: #fff;
+}
+.stories > .wrapper > .video > div > div > a {
+    align-self: flex-end;
+    justify-self: flex-end;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+.stories > .wrapper > .video > div > div > a  > i {
+    margin-left: 0.5em;
+}
+
+/* 3rd block */
+
 .reel {
     grid-area: reel;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to right, #191919 50%, #1f1f1f 50%);
 }
 .reel > div:first-child {
-    background: navy;
     height: 15%;
-    width: 90%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.1em;
+
+}
+.reel > div:first-child > p{
+    color: #515151;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    height: 30%;
+}
+.reel > div:first-child > h2 {
+    color: #fff;
+    height: 70%;
 }
 .reel > div:last-child {
-    height: 75%;
-    background: navajowhite;
-    width: 90%;
+    height: 65%;
+    width: 80%;
+    display: flex;
 }
+.reel > div:last-child > div:first-of-type {
+    height: 100%;
+    width: 60%;
+    background: gold;
+} 
+.reel > div:last-child > div:last-of-type {
+    height: 100%;
+    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr repeat(3, 1fr) 3fr;
+    padding-left: 3em;
+    align-items: center;
+}
+.reel > div:last-child p {
+    color: #515151;
+    font-weight: bold;
+    letter-spacing: 0.5em;
+} 
+.reel > div:last-child a {
+    line-height: 1.5em;
+    color: #fff;
+    display: flex;
+    flex-direction: columns;
+    justify-content: space-between;
+}
+.reel button {
+    width: 8em;
+    height: 3em;
+    color: #7c7c7c;
+    background: #1f1f1f;
+    border: 0.1em solid #7c7c7c;
+}
+/* 4th block */
+
 .magazine {
     grid-area: magazine;
     display: flex;
     flex-direction: column;
-    grid-auto-rows: 20%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 4em 4em;
+    background-image: url('assets/fez_back.png');
+    margin-bottom: -4em;
+    padding-bottom: 4em;
 }
 .magazine > div:first-child {
-    background: firebrick;
-    height: 30%;
+    height: 25%;
     width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.magazine > div:first-child p {
+    height: 1.5em;
+    color: #c3c3c3;
+    font-weight: bold;
+    letter-spacing: 0.25em;
 }
 .magazine > div:last-child {
-    background: aquamarine;
     height: 50%;
-    width: 100%;
+    width: 65%;
+    display: flex;
+    align-self: center;
 }
+.magazine > div:last-child > div:first-child {
+    width: 45%;
+    background: violet;
+    height: 100%;
+}
+.magazine > div:last-child > div:last-child {
+    width: 50%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 2fr;
+    padding-left: 3em;
+    align-items: center;
+}
+.magazine > div:last-child p {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    font-weight: bold;
+    align-self: flex-end;
+}
+.magazine > div:last-child h2 {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+
+}
+.magazine > div:last-child a {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    letter-spacing: 0.1em;
+}
+.magazine > div:last-child button:first-of-type {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+.magazine > div:last-child button:last-of-type {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+}
+.magazine button {
+    height: 3em;
+    width: 10em;
+    color: #7c7c7c;
+    background: #1f1f1f;
+    border: 0.1em solid #7c7c7c;
+}
+
+/* 5th block */
+
 .extra {
     grid-area: extra;
     display: flex;
     flex-direction: row;
 }
 .extra > div:first-child {
-    background: purple;
+    background: pink;
     width: 30%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.extra > div:first-child {
+    width: 30%;
+    height: 100%;
+    background: #1f1f1f;
+    display: grid;
+    grid-template-rows: 5% 30% 4% 8% 26% 5%;
+    align-content: center;
+    align-items: center;
+    padding-left: 3.5em; 
+}
+.extra > div:first-child > p:first-of-type {
+    color: #515151;
+    font-weight: bolder;
+    letter-spacing: 1em;
+}
+.extra > div:first-child h1 {
+    line-height: 1.5em;
+}
+.extra > div:first-child > div{
+    width: 60%;
+    background: #fff;
+    height: 20%;
+}
+.extra > div:first-child span {
+    color: #fff;
+    font-weight: bolder;
+    font-size: 2em;
+}
+.extra > div:first-child > p:last-of-type {
+    width: 75%;
+    line-height: 1.8em;
+    color: #fff;
+}
+.extra > div:first-child > a {
+    color: #fff;
+    letter-spacing: 0.1em;
+}
+.extra > div:first-child > a > i {
+    margin-left: 1em;
 }
 .extra > div:last-child {
     background: pink;
@@ -129,6 +496,52 @@ button {
     height: 90%;
     align-self: flex-end;
 }
-.container > * {
+
+/* end */
+
+footer {
+    background: #2c2c2c;
+    height: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    color: #727272;
+    letter-spacing: 0.05em;
+}
+.holder {
     height: 100%;
+    width: 100%;
+    outline: 0.05em solid #1f1f1f;
+    display: grid;
+    grid-template-columns: 7% 20% 43% 30%;
+    grid-gap: 0.05em;
+    background: #1f1f1f;
+}
+.holder > div {
+    background: #2c2c2c;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.holder > div > div {
+    width: 85%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+.holder > div:first-child {
+    filter: grayscale(100%);
+    background-repeat: no-repeat;
+    background-size: 90% 90%;
+    object-fit: fill;
+    background-position: center;
+    background-image: url('assets/tree_logo.png');
+}
+.holder > div:nth-of-type(2) {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    object-fit: fill;
+    background-position: center;
+    background-image: url('assets/brand_me.png');
 }
