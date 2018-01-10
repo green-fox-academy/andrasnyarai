@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: CreateElement</title>
+</head>
+<body>
+  <ul class="asteroids">
+    <li>The King</li>
+  </ul>
+
+
+
+    <script>
+      'use strict'
+      const planetData = [
+          {
+          category: 'inhabited',
+          content: 'Foxes',
+          asteroid: true
+          },
+          {
+          category: 'inhabited',
+          content: 'Whales and Rabbits',
+          asteroid: true
+          },
+          {
+          category: 'uninhabited',
+          content: 'Baobabs and Roses',
+          asteroid: true
+          },
+          {
+          category: 'inhabited',
+          content: 'Giant monsters',
+          asteroid: false
+          },
+          {
+          category: 'inhabited',
+          content: 'Sheep',
+          asteroid: true
+          }
+      ]
+          document.querySelector('ul').removeChild(document.querySelector('ul li:first-child'))
+  
+          for (let item of planetData) {
+              if (item.asteroid) {
+                  let newLi = document.createElement('li')
+                  newLi.textContent = item.content
+                  newLi.classList.add(item.category)
+                  document.querySelector('ul').appendChild(newLi)
+              }
+          }
+    </script>
+</body>
+</html>

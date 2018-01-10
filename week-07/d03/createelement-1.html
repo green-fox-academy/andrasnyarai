@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: CreateElement</title>
+</head>
+<body>
+  <ul class="asteroids">
+    <li id="b325" class="asteroid">The King</li>
+    <li class="asteroid b326">The Conceited Man</li>
+  </ul>
+  <div class="container"></div>
+
+  <script>
+      'use strict'
+      let asteroidList = document.querySelector('ul.asteroids');
+
+      let newAsteroid = document.createElement('li');
+      newAsteroid.id = 'b555';
+      newAsteroid.textContent = 'The Green Fox';
+      asteroidList.appendChild(newAsteroid);
+
+      let new2Asteroid = document.createElement('li');
+      new2Asteroid.id = 'b554';
+      new2Asteroid.textContent = 'The Lampfighter';
+      asteroidList.appendChild(new2Asteroid);
+
+      let container = document.querySelector('div.container');
+
+      let newHeader = document.createElement('header');
+      newHeader.id = 'a01';
+      newHeader.textContent = 'I can add dope to the DOM!';
+      container.appendChild(newHeader);
+
+      let newImg = document.createElement('img');
+      newImg.src = 'other-linux-logo.png';
+      container.appendChild(newImg);
+  </script>
+</body>
+</html>

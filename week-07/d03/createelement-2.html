@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: CreateElement</title>
+</head>
+<body>
+  <h1>The candyshop has:</h1>
+  <ul class="candyshop">
+    <li>1 Mega juicy candy</li>
+  </ul>
+
+  <script>
+      'use strict'
+       document.querySelector('ul').removeChild(document.querySelector('ul li:first-child'))
+
+      for (let i = 1; i <= 16; i++) {
+        let newLi = document.createElement('li')
+        newLi.textContent = 'Empty box @' + i
+        document.querySelector('ul').appendChild(newLi)
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: innerHTML, textContent</title>
+</head>
+<body>
+  <p class="apple">apple</p>
+  <p class="balloon">banana</p>
+  <p class="cat">car</p>
+  <p class="dog">dolphin</p>
+
+  <script>
+      'use strict'
+      let fill = document.querySelector('.dog').textContent
+      let allOf = document.querySelectorAll('p')
+        for (let i = 0; i < allOf.length; i++) {
+            allOf[i].textContent = fill;
+        }
+  </script>
+</body>
+</html>
