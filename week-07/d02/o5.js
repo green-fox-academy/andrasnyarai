@@ -37,7 +37,7 @@ let titleThree = 'In stock'
 
 console.log('┌─' + '─'.repeat(maxLength) + '─┬─' + '─'.repeat(titleTwo.length) + '─┬─' + '─'.repeat(titleThree.length) + '─┐')
 
-console.log('│' + titleOne + ' '.repeat(maxLength - titleOne.length + 2) + '│' + titleTwo + ' '.repeat(titleTwo.length - 11) + '│' + titleThree + ' '.repeat(titleThree.length - 7) + ' │')
+console.log('│' + titleOne + ' '.repeat(maxLength - titleOne.length + 2) + '│' + titleTwo + ' '.repeat(2) + '│' + titleThree + ' '.repeat(1) + ' │')
 
 console.log('├─' + '─'.repeat(maxLength) + '─┼─' + '─'.repeat(titleTwo.length) + '─┼─' + '─'.repeat(titleThree.length) + '─┤')
 

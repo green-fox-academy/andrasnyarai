@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: EventListeners</title>
+</head>
+<body>
+  <h1>No last pressed key</h1>
+
+  <script>
+    'use strict'
+
+    function sneek (e) {
+        let keyCode = e.keyCode
+        document.querySelector('h1').textContent = 'Last pressed key code is: __' + keyCode
+    }
+    window.addEventListener('keyup', sneek);
+  </script>
+</body>
+</html>
