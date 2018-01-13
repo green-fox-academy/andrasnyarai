@@ -5,11 +5,18 @@
 }
 html {
     height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'VT323', serif;
+    
 }
 body {
-    min-height: 100%;
-}
-body {
+    /* background-color: #000; */
+    background-color: #fff;
+    max-height: 100%;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -18,34 +25,117 @@ body {
     justify-items: center;
 }
 .wrapper {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
     max-width: 80%;
-    height: auto;
-    background: goldenrod;
+    height: 75%;
 }
 .thumb {
     max-width: 80%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    margin: 1vw;
+}
+.scroll {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-top: 0.5vw;
+    padding-bottom: 2vw;
+}
+.scroll:hover {
+    overflow-x: overlay;
+}
+.scroll::-webkit-scrollbar-track {
+	border-radius: 0.25vw;
+    background-color: #F5F5F5;
+}
+.scroll::-webkit-scrollbar {
+    height: 1vw;
+	width: 1vw;
+    background-color: #F5F5F5;
+}
+.scroll::-webkit-scrollbar-thumb {
+	border-radius: 0.25vw;
+	background-color: #D62929;
+}
+.thumb > div > div{
+    width: 10vw;
     height: auto;
-    background: brown;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    display: inline-block;
+    vertical-align: middle;
 }
 .wrapper > div:first-child {
-    flex: 1;
     display: flex;
+    flex: ato;
     align-items: center;
     justify-content: center;
+    
+    opacity: 0.7;
+    border-radius: 0.5vw 0 0 0.5vw;
+    border-top: dashed 0.5vw #000;
+    border-left: dashed 1vw #000;
+    border-bottom: dashed 0.5vw #000;
 }
 .wrapper > div:last-child {
-    flex: 1;
+    flex: auto;
+    flex-basis: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    opacity: 0.7;
+    border-radius: 0 0.5vw 0.5vw 0;
+    border-top: dashed 0.5vw #000;
+    border-right: dashed 1vw #000;
+    border-bottom: dashed 0.5vw #000;
+}
+.wrapper > div:first-child:active{
+    opacity: 1;
+}
+.wrapper > div:last-child:active{
+    opacity: 1;
+}
+.wrapper > div:first-child:hover, .wrapper > div:last-child:hover {
+    cursor: pointer;
+    
 }
 .main {
-    flex: 20;
+    flex: 100;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     position: relative;
+    cursor: default;
+    /* transition: all 1s ease;  */
+}
+.main > div:first-of-type {
+    opacity: 0;
+    transition: all 1s ease;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 1;
+
+}
+.cover {
+    opacity: 1;
+    animation: fade 0.5s;
+}
+.coverTwo {
+    opacity: 1;
+    animation: fadeTwo 0.5s;
+}
+
+.main:hover > div.title {
+    opacity: 0.7;
+    color: #000;
+    transform: translateY(24vw);
+    transition: all 0.6s ease;
 }
 img {
     height: 100%; 
@@ -60,19 +150,169 @@ img {
     position: absolute;
     width: 100%;
     height: auto;
-    opacity: 0.2;
-    bottom: 0;
-    color:red;
+    opacity: 0;
+    top: 0;
+    color: #fff;
     font-size: 2vw;
     margin-bottom: 1vw;
+    cursor: default;
 }
 h1 {
     width: 95%;
     word-wrap: break-word;
-    /* height: 5vw; */
 }
 p {
     width: 95%;
     word-wrap: break-word;
-    /* height: 3.5vw; */
+}
+.selected {
+    /* border-top: 0.5vw solid #D62929; */
+    /* border-radius: 0.2vw 0.2vw 0 0; */
+    opacity: 0.7;
+    outline: 1px solid white;
+    outline-offset: -4px;
+    animation: grow 1s ease-in;
+
+}
+.selected ~ div.circleRight {
+    position: absolute;
+    top: 0;
+    width: 1vw;
+    background: #000;
+    height: 1vw;
+    align-self: center;
+    top: -0.3vw;
+    transform: rotateZ(45deg);
+    left: 45.5%;
+    animation: rotatingRight 2s;
+}
+.selected ~ div.circleLeft {
+    position: absolute;
+    top: 0;
+    width: 1vw;
+    background: #000;
+    height: 1vw;
+    align-self: center;
+    top: -0.3vw;
+    transform: rotateZ(45deg);
+    left: 45.5%;
+    animation: rotatingLeft 2s;
+}
+.selected ~ div.circle {
+    position: absolute;
+    top: 0;
+    width: 1vw;
+    background: #000;
+    height: 1vw;
+    align-self: center;
+    top: -0.3vw;
+    transform: rotateZ(45deg);
+    left: 45.5%;
+    animation: popping 2s;
+}
+span {
+	font-size: 1.5vw;
+    transition: .3s ease-in-out;
+    max-width: 90%;
+    max-height: 90%;
+
+    text-orientation: upright;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: initial;
+    margin-left: 0.3vw;
+}
+.scroll > div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+}
+.scroll > div:hover .hidden {
+    opacity: 0.5;
+    cursor: pointer;
+}
+span:hover {
+    cursor: pointer;
+}
+.hidden {
+	position: absolute;
+    opacity: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    color: #fff;
+    background-color: #000;
+    transition: all 0.4s ease 0s;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+@keyframes rotatingRight {
+    0% {
+        transform: rotateZ(45deg)
+    }
+    100% {
+        transform: rotateZ(405deg)
+    }
+}
+@keyframes rotatingLeft {
+    0% {
+        transform: rotateZ(45deg)
+    }
+    100% {
+        transform: rotateZ(-405deg)
+    }
+}
+@keyframes popping {
+    0% {
+        background: #000;
+    }
+    25% {
+        background: #fff;
+        opacity: 0;
+    }
+    50% {
+    }
+    100% {
+        background: #000;
+        opacity: 1;
+    }
+    
+}
+@keyframes grow {
+    0% {
+        opacity: 1;
+        border-top: 0.1vw solid #000;
+    }
+    25% {
+        outline: 0.2vw solid white;
+        outline-offset: -10vw;
+
+    }
+    100% {
+        border-top: 0 solid #000;
+        opacity: 0.7;
+        outline: 1vw solid white;
+        outline-offset: 0.1vw;
+        
+    }
+}
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }  
+}
+@keyframes fadeTwo {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }  
 }
