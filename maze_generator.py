@@ -32,7 +32,7 @@ class Walker(object):
             self.area.append([0, num])
             self.area.append([600, num])
 
-    def random_walk(self, depth, x, y, length):
+    def draw_maze(self, depth, x, y, length):
         if depth == 0:
             return
 
@@ -92,13 +92,13 @@ class Walker(object):
                     self.positions.append([int(x1),int(y1)])
 
                     self.jump_points.append([int(x1),int(y1)])
-                    color_rgb = "#%02x%02x%02x" % (depth//2, 255, 255)
+                    color_rgb = "#%02x%02x%02x" % (depth//10, 255, depth//3)
                     canvas.create_line(int(x), int(y), int(x1), int(y1), fill=color_rgb, width=5)
                     active = False
 
         print(y1)
 
-        self.random_walk(depth - 1, x1, y1, length)
+        self.draw_maze(depth - 1, x1, y1, length)
 
 w = Walker()
 
@@ -111,7 +111,7 @@ def on_key_press(e):
     elif e.keysym == "space":
         canvas.create_rectangle(0, 0, 600, 600, fill="black", outline="black")
         w.start()
-        w.random_walk(w.depth, w.start_x, w.start_y, 30)
+        w.draw_maze(w.depth, w.start_x, w.start_y, 30)
         w.empty()
         print(w.depth)
         print('____________________________________')
