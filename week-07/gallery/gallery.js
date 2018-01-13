@@ -85,7 +85,7 @@ function goLeft (e) {
     for (let item of listOfPictures) {
         if (document.querySelector('.main img').dataset.index == item.i && status) {
             let indicator = item.i - 1
-            if (indicator == -1) {
+            if (indicator == - 1) {
                 indicator = listOfPictures.length -1
             }
             
@@ -140,8 +140,9 @@ thumbnail.addEventListener('click', function(event) {
     document.querySelector('.selected ~ div').classList.remove('circleLeft')
     document.querySelector('.selected ~ div').classList.remove('circleRight')
     document.querySelector('.selected ~ div').classList.add('circle')
+
     
-    if (event.target.tagName == 'DIV') {        
+    if (event.target.classList.contains('hidden')) {        
 
         let parentElement = event.target.parentElement
         let childImg = parentElement.querySelector('img')
@@ -213,4 +214,5 @@ for (let item of listOfPictures) {
     newdiv.appendChild(otherdiv);
     document.querySelector('.scroll').appendChild(newdiv);
 }
+
 document.querySelector('.scroll img').classList.add('selected')
