@@ -13,7 +13,6 @@ html {
     
 }
 body {
-    /* background-color: #000; */
     background-color: #fff;
     max-height: 100%;
     width: auto;
@@ -60,17 +59,10 @@ body {
 	border-radius: 0.25vw;
 	background-color: #D62929;
 }
-.thumb > div > div{
-    width: 10vw;
-    height: auto;
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
-    display: inline-block;
-    vertical-align: middle;
-}
 .wrapper > div:first-child {
+    flex: auto;
+    flex-basis: auto;
     display: flex;
-    flex: ato;
     align-items: center;
     justify-content: center;
     
@@ -99,9 +91,11 @@ body {
 .wrapper > div:last-child:active{
     opacity: 1;
 }
+.wrapper div.active {
+    opacity: 1;
+}
 .wrapper > div:first-child:hover, .wrapper > div:last-child:hover {
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
 .main {
     flex: 100;
@@ -110,7 +104,6 @@ body {
     justify-content: center;
     position: relative;
     cursor: default;
-    /* transition: all 1s ease;  */
 }
 .main > div:first-of-type {
     opacity: 0;
@@ -120,7 +113,6 @@ body {
     height: 100%;
     background: #fff;
     z-index: 1;
-
 }
 .cover {
     opacity: 1;
@@ -156,6 +148,7 @@ img {
     font-size: 2vw;
     margin-bottom: 1vw;
     cursor: default;
+    transition: opacity 0.6s ease, transform 0.4s ease 0.6s;
 }
 h1 {
     width: 95%;
@@ -166,8 +159,6 @@ p {
     word-wrap: break-word;
 }
 .selected {
-    /* border-top: 0.5vw solid #D62929; */
-    /* border-radius: 0.2vw 0.2vw 0 0; */
     opacity: 0.7;
     outline: 1px solid white;
     outline-offset: -4px;
@@ -218,14 +209,18 @@ span {
 
     text-orientation: upright;
     word-wrap: break-word;
-    word-break: break-all;
     white-space: initial;
     margin-left: 0.3vw;
 }
 .scroll > div {
     position: relative;
-    display: flex;
     align-items: center;
+    width: 10vw;
+    height: auto;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    display: inline-flex;
+    vertical-align: middle;
     
 }
 .scroll > div:hover .hidden {
@@ -280,7 +275,6 @@ span:hover {
         background: #000;
         opacity: 1;
     }
-    
 }
 @keyframes grow {
     0% {
@@ -290,14 +284,12 @@ span:hover {
     25% {
         outline: 0.2vw solid white;
         outline-offset: -10vw;
-
     }
     100% {
         border-top: 0 solid #000;
         opacity: 0.7;
         outline: 1vw solid white;
         outline-offset: 0.1vw;
-        
     }
 }
 @keyframes fade {

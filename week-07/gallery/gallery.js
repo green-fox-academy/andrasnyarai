@@ -2,63 +2,63 @@
 
 const listOfPictures = [
     {'i': 0,
-     'picture': 'p0.jpg',
+     'picture': 'pictures/p0.jpg',
      'title': 'Jackson Pollock',
      'text': 'Blue Poles / Number 11'},
     {'i': 1,
-     'picture': 'p1.jpg',
+     'picture': 'pictures/p1.jpg',
      'title': 'Jackson Pollock',
      'text': 'No. 5'},
     {'i': 2,
-     'picture': 'g0.jpg',
+     'picture': 'pictures/g0.jpg',
      'title': 'Philip Guston',
      'text': 'city limits'},
     {'i': 3,
-     'picture': 'b0.jpg',
+     'picture': 'pictures/b0.jpg',
      'title': 'Francis Bacon',
      'text': '-'},
     {'i': 4,
-     'picture': 'b1.jpg',
+     'picture': 'pictures/b1.jpg',
      'title': 'Francis Bacon',
      'text': '-'},
     {'i': 5,
-     'picture': 'm0.jpg',
+     'picture': 'pictures/m0.jpg',
      'title': 'Claude Monet',
      'text': 'waterlilies'},
     {'i': 6,
-     'picture': 'm1.jpg',
+     'picture': 'pictures/m1.jpg',
      'title': 'Claude Monet',
      'text': 'windmill'},
     {'i': 7,
-     'picture': 'v0.jpg',
+     'picture': 'pictures/v0.jpg',
      'title': 'Van Gogh',
      'text': 'prison'},
     {'i': 8,
-     'picture': 'r0.jpg',
+     'picture': 'pictures/r0.jpg',
      'title': 'Mark Rothko',
      'text': '-'},
     {'i': 9,
-     'picture': 'k0.jpg',
+     'picture': 'pictures/k0.jpg',
      'title': 'Franz Klein',
      'text': '-'},
     {'i': 10,
-     'picture': 'h0.jpg',
+     'picture': 'pictures/h0.jpg',
      'title': 'Edward Hopper',
      'text': 'gas station'},
     {'i': 11,
-     'picture': 'w0.jpg',
+     'picture': 'pictures/w0.jpg',
      'title': 'Willem de Kooning',
      'text': '-'},
     {'i': 12,
-     'picture': 'c0.jpg',
+     'picture': 'pictures/c0.jpg',
      'title': 'Giorgio de Chirico',
      'text': '-'},
     {'i': 13,
-     'picture': 'rm0.jpg',
+     'picture': 'pictures/rm0.jpg',
      'title': 'René Magritte',
      'text': '-'},
     {'i': 14,
-     'picture': 'd0.jpg',
+     'picture': 'pictures/d0.jpg',
      'title': 'David Lynch',
      'text': '-'},
 ]
@@ -136,27 +136,25 @@ function goRight (e) {
 let thumbnail = document.querySelector('.scroll');
 
 thumbnail.addEventListener('click', function(event) {
-
-    document.querySelector('.selected ~ div').classList.remove('circleLeft')
-    document.querySelector('.selected ~ div').classList.remove('circleRight')
-    document.querySelector('.selected ~ div').classList.add('circle')
-
     
     if (event.target.classList.contains('hidden')) {        
-
+        
         let parentElement = event.target.parentElement
         let childImg = parentElement.querySelector('img')
         document.querySelector('.main img').setAttribute('src' , childImg.src)
         document.querySelector('.main h1').textContent = childImg.dataset.title
         document.querySelector('.main p').textContent = childImg.dataset.text
         document.querySelector('.main img').dataset.index = childImg.dataset.index
-
+        
         clear()
         childImg.classList.add('selected')
-
+        document.querySelector('.selected ~ div').classList.remove('circleLeft')
+        document.querySelector('.selected ~ div').classList.remove('circleRight')
+        document.querySelector('.selected ~ div').classList.add('circle')
+        
         document.querySelector('.main div').classList.toggle('cover')
         document.querySelector('.main div').classList.toggle('coverTwo')
-
+        
     } else if (event.target.tagName == 'SPAN') {
         
         let parentElement = event.target.parentElement.parentElement
@@ -165,9 +163,12 @@ thumbnail.addEventListener('click', function(event) {
         document.querySelector('.main h1').textContent = childImg.dataset.title
         document.querySelector('.main p').textContent = childImg.dataset.text
         document.querySelector('.main img').dataset.index = childImg.dataset.index
-
+        
         clear()
         childImg.classList.add('selected')
+        document.querySelector('.selected ~ div').classList.remove('circleLeft')
+        document.querySelector('.selected ~ div').classList.remove('circleRight')
+        document.querySelector('.selected ~ div').classList.add('circle')
 
         document.querySelector('.main div').classList.toggle('cover')
         document.querySelector('.main div').classList.toggle('coverTwo')
@@ -181,8 +182,16 @@ document.querySelector('.right').addEventListener('click', goRight);
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 37) {
         goLeft()
+        document.querySelector('.left').classList.add('active')
+        setTimeout(function() {
+            document.querySelector('.left').classList.remove('active')
+      }, 70);
     } else if (e.keyCode == 39) {
         goRight()
+        document.querySelector('.right').classList.add('active')
+        setTimeout(function() {
+            document.querySelector('.right').classList.remove('active')
+      }, 70);
     }
 })
 
