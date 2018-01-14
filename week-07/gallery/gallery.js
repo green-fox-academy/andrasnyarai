@@ -150,7 +150,10 @@ thumbnail.addEventListener('click', function(event) {
         childImg.classList.add('selected')
         document.querySelector('.selected ~ div').classList.remove('circleLeft')
         document.querySelector('.selected ~ div').classList.remove('circleRight')
-        document.querySelector('.selected ~ div').classList.add('circle')
+        document.querySelector('.selected ~ div').classList.remove('circle')
+        setTimeout(function() {
+            document.querySelector('.selected ~ div').classList.add('circle')
+      }, 5);
         
         document.querySelector('.main div').classList.toggle('cover')
         document.querySelector('.main div').classList.toggle('coverTwo')
@@ -168,7 +171,10 @@ thumbnail.addEventListener('click', function(event) {
         childImg.classList.add('selected')
         document.querySelector('.selected ~ div').classList.remove('circleLeft')
         document.querySelector('.selected ~ div').classList.remove('circleRight')
-        document.querySelector('.selected ~ div').classList.add('circle')
+        document.querySelector('.selected ~ div').classList.remove('circle')
+        setTimeout(function() {
+            document.querySelector('.selected ~ div').classList.add('circle')
+      }, 5);
 
         document.querySelector('.main div').classList.toggle('cover')
         document.querySelector('.main div').classList.toggle('coverTwo')
