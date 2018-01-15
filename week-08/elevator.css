@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+}
+body {
+    background-color: #7f3ca3;
+    width: 100%;
+    height: 100%;
+}
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.left {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-left: 10vw;
+}
+.left > div {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    height: 3vw;
+    width: 20vw;
+    border-radius: 1vw;
+    
+}
+.left > div > button:last-child {
+    margin-top: 1vh;
+}
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5vw;
+    
+}
+.right > .e_container {
+    height: 80%;
+    width: 40%;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 2.5vw;
+    outline: 2px solid black;
+    
+}
+.right > .floors {
+    height: 80%;
+    width: 10%;
+    display: flex;
+    flex-direction: column-reverse;
+    outline: 2px solid black;
+}
+.right > .floors > div {
+    outline: 1px solid black;
+    flex: 1;
+    text-align: center;
+}
+.right > .e_container > div {
+    text-align: center;
+    outline: 1px solid black;
+    flex: 1;
+}
+
+.elevator {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #1b7278;
+    bottom: 0;
+    transition: all ease 1s;
+    outline: 1px solid black;
+    box-shadow: inset 0 -0.5px 2px black;
+}

@@ -1,3 +1,5 @@
+'use strict'
+
 // We should know about each sharpie:
 // color (which should be a string)
 // width (which will be a number)
