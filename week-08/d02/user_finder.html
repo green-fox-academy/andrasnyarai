@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+</head>
+<body>
+    <script src="users.js"></script>
+    <script>
+        'use strict'
+        // The users variables comes from the file included above
+        // First select from the list the users whose bitcoin address AND email address is provided
+        // Then return a list of users. Each user should be in the following format:
+        let singleUser = {
+            full_name: "Elite Hacker",
+            addresses: {
+                bitcoin: 'ligehs98wtz4u9ötuw...',
+                email: 'hello@example.com'
+            }
+        }
+        let listOfUsers = []
+        users.map(function (item, index) {
+            if (item.email != null && item.bitcoin_address != null) {
+
+                let newUser = {}
+                let fullAdresses = {}
+                if (item.last_name == null) {
+                    newUser.full_name = item.first_name
+                } else {
+                    newUser.full_name = item.first_name + ' ' +item.last_name
+                }
+
+                fullAdresses.bitcoin = item.bitcoin_address
+                fullAdresses.email = item.email
+
+                newUser.addresses = fullAdresses
+
+                listOfUsers.push(newUser)
+            }
+        })
+        // Do not use for or forEach
+        console.log(listOfUsers)
+    </script>
+</body>
+</html>

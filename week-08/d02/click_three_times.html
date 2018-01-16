@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>thr e e e</title>
+</head>
+<body>
+    <button>BUTTON</button>
+    <p></p>
+    <script>
+        'use strict'
+//         Create a simple HTML document with one button.
+
+// If the user clicks the button 3 times, and 5 seconds is already ellapsed since
+//  the page is loaded, a text should apper under the button:
+
+// 5 seconds ellapsed and clicked 3 times
+
+// If the user starts clicking before the first 5 seconds, nothing should be printed
+
+        let count = 0
+        setTimeout( () => {document.querySelector('button').addEventListener('click', threeTimes)}, 5000)
+
+        function threeTimes () {
+            count++
+            if (count >= 3) {
+                document.querySelector('p').innerText = ' 5 seconds ellapsed and clicked 3 times'
+            }
+        }
+
+
+    </script>
+    
+</body>
+</html>
