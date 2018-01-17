@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giphy</title>
+    <style>
+        .container {
+            display: flex;
+            white-space: nowrap;
+            overflow-x: scroll;
+        }
+        .container > div {
+            display: inline-flex;
+        }
+    </style>
 </head>
 <body>
+    <div class="container"></div>
     <script src="giphy.js"></script>
 </body>
 </html>
