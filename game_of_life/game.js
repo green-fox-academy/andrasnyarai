@@ -13,7 +13,6 @@ function fillArray () {
     let grid = makeArray(cols, rows);
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            // grid[i][j] = Math.round(Math.random())
             grid[i][j] = 0
             
         }
@@ -21,7 +20,33 @@ function fillArray () {
     return grid;
 }
 
-function drawState () {
+function fillRandom () {
+
+    // clearing previous "white" class
+    let outerDivs = document.querySelectorAll('.container > div')
+    for (let i = 0; i < cols; i++) {
+        let innerDivs = outerDivs[i].querySelectorAll('.container > div > div')
+        for (let j = 0; j < rows; j++) {
+            innerDivs[j].classList.remove('white')
+        }
+    }
+
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            grid[i][j] = Math.round(Math.random()) 
+        }
+    }
+    for (let i = 0; i < cols; i++) {
+        let innerDivs = outerDivs[i].querySelectorAll('.container > div > div')
+        for (let j = 0; j < rows; j++) {
+            if (grid[i][j] == 1) {
+                innerDivs[j].classList.add('white')
+            }
+        }
+    }
+}
+
+function updateState () {
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
         for (let i = 0; i < cols; i++) {
@@ -74,13 +99,32 @@ function nextState () {
     }
     grid = next;
 }
+var gameTimer;
 
-function loop() {
-    setTimeout(function () {
-        nextState()
-        drawState()
-        loop();
-    }, 100);
+function gameLoop () {
+    nextState()
+    updateState()
+}
+function gameFlow () {
+    gameTimer = setInterval(gameLoop, 100)
+}
+function stopTimer () {
+
+    let called = true
+    
+    let stopButton = document.querySelector('button:last-of-type')
+    
+    if (stopButton.textContent == 'STOP') {
+        stopButton.textContent = 'CONTINUE';
+        clearInterval(gameTimer)
+        called = false
+    }
+    if (stopButton.textContent == 'CONTINUE' && called) {
+        stopButton.textContent = 'STOP';
+        gameTimer = setInterval(gameLoop, 100)
+
+    }
+    
 }
 
 let canvas = document.createElement('canvas')
@@ -96,7 +140,7 @@ const rows = canvas.width / res;
 const cols = canvas.height / res;
 
 let grid = fillArray()
-drawState()
+updateState()
 
 
 let body = document.querySelector('body')
@@ -105,7 +149,6 @@ container.classList.add('container')
 body.appendChild(container)
 
 let status = false
-console.log(status)
 
 function startStatus(e) {
     if (!status) {
@@ -116,6 +159,9 @@ function startStatus(e) {
 }
 
 function checked(e) {
+    if (e.altKey) {
+        e.target.classList.remove('white')
+    }
     e.stopPropagation()
     if (status) {
         e.target.classList.add('white')
@@ -132,14 +178,11 @@ for (let i = 0; i < cols; i++) {
         newRowDiv.appendChild(newColDiv)
     }
     container.addEventListener('click', startStatus)
+    container.addEventListener('auxclick', startStatus)
     container.appendChild(newRowDiv)
 }
 
-
-
-
-function startGame () {
-    console.log('start')
+function drawState () {
     let outerDivs = document.querySelectorAll('.container > div')
     for (let i = 0; i < cols; i++) {
         let innerDivs = outerDivs[i].querySelectorAll('.container > div > div')
@@ -149,11 +192,22 @@ function startGame () {
             }
         }
     }
+}
+
+
+function startGame () {
+    console.log('start')
+
+
+    drawState()
+    
     document.body.removeChild(container)
     document.body.appendChild(canvas)
     
-    loop()
+    gameFlow()
 }
 
-document.querySelector('button').addEventListener('click', startGame);
+document.querySelector('button:first-of-type').addEventListener('click', startGame);
+document.querySelector('button:nth-of-type(2n)').addEventListener('click', fillRandom);
+document.querySelector('button:last-of-type').addEventListener('click', stopTimer);
 
