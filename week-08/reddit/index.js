@@ -175,7 +175,7 @@ function start () {
 
 start ()
 let userName = window.location.href.split('para1=')
-userName = userName[1]
+userName = decodeURIComponent(userName[1])
 
 document.querySelector('.button').href = `file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/submit.html?para1=${userName}`
 document.querySelector('header p').innerHTML = `logged in as <em>${userName}</em>`

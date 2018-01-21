@@ -43,4 +43,4 @@ let button = document.querySelector('.button')
 button.addEventListener('click', validify)
 
 let userName = window.location.href.split('para1=')
-userName = userName[1]
+userName = decodeURIComponent(userName[1])

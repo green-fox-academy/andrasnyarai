@@ -15,7 +15,7 @@ button.addEventListener('click', function () {
         background.classList.add('out')
         login.style['opacity'] = '0'
     
-        let username = input.replace(' ', '')
+        let username = input.trim()
     
         document.querySelector('input').value = `welcome ${username} ⪾`
         document.querySelector('p').textContent = '⫶'
