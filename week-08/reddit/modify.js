@@ -17,12 +17,11 @@ function validify () {
 function modify(title, url) {
     
     let httpRequest = new XMLHttpRequest();
-    // httpRequest.open('POST', 'http://secure-reddit.herokuapp.com/simple/posts', true);
     httpRequest.open('PUT', 'https://time-radish.glitch.me/posts/'+id, true);
     
     httpRequest.setRequestHeader("Accept", "application/json");
     httpRequest.setRequestHeader("Content-Type", "application/json");
-    httpRequest.setRequestHeader("Username", "Andris");
+    httpRequest.setRequestHeader("Username", userName);
 
     let params = {
         "title": title,
@@ -33,7 +32,7 @@ function modify(title, url) {
     httpRequest.onreadystatechange = function() {
 
         if(httpRequest.readyState == 4 && httpRequest.status == 200) {
-            window.location.replace("file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/index.html");
+            window.location.replace(`file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/index.html?para1=${userName}`);
         }
     }
     console.log(JSON.stringify(params))
@@ -60,9 +59,14 @@ newTitle.splice(newTitle.length - 1, 1)
 newTitle = newTitle.join('')
 
 let newId = decodeURIComponent(fillData[3]).split('')
-newId.splice(0,1)
+newId.splice(0,2)
+newId.splice(newId.length - 1, 1)
 newId = newId.join('')
 id = newId
+
+let userName = decodeURIComponent(fillData[4]).split('')
+userName.splice(0,2)
+userName = userName.join('')
 
 document.querySelector('.form > #submit').value = newTitle
 document.querySelector('.form > #textarea').value = newUrl
