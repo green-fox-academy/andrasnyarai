@@ -10,65 +10,40 @@ function deletePost (e) {
     httpRequest.setRequestHeader("Accept", "application/json");
     httpRequest.setRequestHeader("Content-Type", "application/json");
     
-    httpRequest.onreadystatechange = console.log
     httpRequest.onreadystatechange = function() {
-        // console.log(httpRequest.readyState)
-    
-        // console.log(httpRequest.status)
-    
-        // console.log(httpRequest.responseText)
         
         if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+            let item = e.target.parentNode.parentNode.parentNode
+            let parent = item.parentNode
+            parent.removeChild(item)
         }
     }
-    console.log(e.target.parentNode.parentNode.parentNode)
-
-    let item = e.target.parentNode.parentNode.parentNode
-    let parent = item.parentNode
-    parent.removeChild(item)
-
     httpRequest.send(null);
-
-    // let v = document.querySelector('.main-container').children
-    // var arr = Array.from(v);
-    // arr.map(function(item){
-    //     item.remove()
-    // })
-    
-    // start()
 }
 
 function relocateToModify(e) {
-
     
-    console.log(e.target.parentNode.parentNode.children[0])
     let url = e.target.dataset.url
     let title = e.target.parentNode.parentNode.children[0].textContent
     let id = e.target.dataset.id
 
     let queryString = "?para1=" + url + "&para2=" + title + '&para3' + id;
     window.location.href = "file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/modify.html" + queryString;
-
-    // e.target.setAttribute('href', "file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/modify.html")
 }
 
 function fillMain (onePost) {
     settingData(onePost)
-
 }
 
 function upVote (e) {
     let currentId = e.target.dataset.id
     let httpRequest = new XMLHttpRequest();
-    // console.log(e)
-    // httpRequest.open('PUT', 'http://secure-reddit.herokuapp.com/simple/posts/'+currentId+'/upvote', true);
     httpRequest.open('PUT', 'https://time-radish.glitch.me/posts/'+currentId+'/upvote', true);
     
     httpRequest.setRequestHeader("Accept", "application/json");
     
     httpRequest.onreadystatechange = function() {
         
-                
         if(httpRequest.readyState == 4 && httpRequest.status == 200) {
 
             let newScore = JSON.parse(httpRequest.response).score
@@ -77,28 +52,17 @@ function upVote (e) {
         }
     }
     httpRequest.send(null);
-
-    // let v = document.querySelector('.main-container').children
-    // var arr = Array.from(v);
-    // arr.map(function(item){
-    //     item.remove()
-    // })
-    // start()
-    // location.hash = "id42"; 
-    
 }
+
 function downVote (e) {
     let currentId = e.target.dataset.id
     let httpRequest = new XMLHttpRequest();
-    // httpRequest.open('PUT', 'http://secure-reddit.herokuapp.com/simple/posts/'+currentId+'/downvote', true);
     httpRequest.open('PUT', 'https://time-radish.glitch.me/posts/'+currentId+'/downvote', true);
     
     httpRequest.setRequestHeader("Accept", "application/json");
     
-
     httpRequest.onreadystatechange = function() {
-        
-                
+
         if(httpRequest.readyState == 4 && httpRequest.status == 200) {
 
             let newScore = JSON.parse(httpRequest.response).score
@@ -107,23 +71,14 @@ function downVote (e) {
         }
     }
     httpRequest.send(null);
-    
-    // let v = document.querySelector('.main-container').children
-    // var arr = Array.from(v);
-    // arr.map(function(item){
-    //     item.remove()
-    // })
-    
-    // start()
 }
 
 function refresh () {
-    let v = document.querySelector('.main-container').children
-    var arr = Array.from(v);
-    arr.map(function(item){
+    let htmlOfPosts = document.querySelector('.main-container').children
+    let arrayOfPosts = Array.from(htmlOfPosts);
+    arrayOfPosts.map(function(item){
         item.remove()
     })
-    
     start()
 }
 
@@ -153,8 +108,7 @@ function settingData (onePost) {
     a2.dataset.id = onePost.id
     a2.addEventListener('click', downVote)
     
-    let list0 = [a0,a1,a2]
-    let div1Fill = append(div1, list0)
+    let div1Fill = append(div1, [a0,a1,a2])
     
     let div2 = document.createElement('div')
     
@@ -165,16 +119,15 @@ function settingData (onePost) {
     let a3 = document.createElement('a')
     let a4 = document.createElement('a')
     let a5 = document.createElement('a')
-
-    a5.dataset.id = onePost.id
-    a5.addEventListener('click', deletePost)
-
+    
     a3.textContent = '⨕'
     a4.textContent = 'modify'
     a4.dataset.url = onePost.url
     a4.dataset.id = onePost.id
     a4.addEventListener('click', relocateToModify)
     a5.textContent = 'remove'
+    a5.dataset.id = onePost.id
+    a5.addEventListener('click', deletePost)
     
     h2.textContent = onePost.title
     h2.setAttribute('href', onePost.url)
@@ -182,24 +135,20 @@ function settingData (onePost) {
     if (onePost.owner == null) {
         onePost.owner = 'anonymous'
     }
-        
-    let date = new Date(onePost.timestamp * 1000)
-
+    
+    let date = new Date(onePost.timestamp)
+    
     p0.innerHTML = date + ' | ' + '<strong>' + onePost.owner + '</strong>'
-
-    let list1 = [a3,a4,a5]
-    let p1Fill = append(p1, list1)
-
-    let list2 = [h2,p0,p1Fill]
-    let div2Fill = append(div2, list2)
-
+    
+    let p1Fill = append(p1, [a3,a4,a5])
+    
+    let div2Fill = append(div2, [h2, p0, p1Fill])
+    
     post.appendChild(div1Fill)
     post.appendChild(div2Fill)
+
     container.appendChild(post)
-
 }
-
-
 
 function start () {
     
@@ -209,28 +158,26 @@ function start () {
     httpRequest.setRequestHeader("Content-Type", "application/json");
     
     httpRequest.onreadystatechange = console.log;
-    console.log(httpRequest)
     httpRequest.send();
     httpRequest.onload = function() {
         var data = JSON.parse(httpRequest.responseText);
-        console.log(data)
+        console.log(data.posts)
+
+        data.posts.sort(function (a, b) {
+            return a.score - b.score;
+        })
+
         for (let i = data.posts.length - 1; i >= 0; i--) {
-            console.log(data.posts[i])
             fillMain(data.posts[i])
-    
-    
         }
-    
-    
     }
 }
 
 start ()
+let userName = window.location.href.split('para1=')
+userName = userName[1]
 
+document.querySelector('.button').href = `file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/submit.html?para1=${userName}`
+document.querySelector('header p').innerHTML = `logged in as <em>${userName}</em>`
 
-// setInterval(refresh, 1000)
-
-// var storage = window.localStorage
-// window.localStorage.user = 'ras'
-// window.localStorage.owner = 'ras'
-
+setInterval(refresh, 40000)
