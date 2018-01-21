@@ -27,7 +27,7 @@ function relocateToModify(e) {
     let title = e.target.parentNode.parentNode.children[0].textContent
     let id = e.target.dataset.id
 
-    let queryString = "?para1=" + url + "&para2=" + title + '&para3' + id;
+    let queryString = "?para1=" + url + "&para2=" + title + '&para3=' + id + '&para4=' + userName;
     window.location.href = "file:///C:/Users/Andras/greenfox/andrasnyarai/week-08/reddit/modify.html" + queryString;
 }
 
