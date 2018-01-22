@@ -1,3 +1,5 @@
+'use strict'
+
 var TennisGame1 = function(player1Name, player2Name) {
   this.mScore1 = 0;
   this.mScore2 = 0;
