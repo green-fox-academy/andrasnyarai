@@ -128,7 +128,6 @@ function stopTimer () {
 }
 
 let canvas = document.createElement('canvas')
-canvas.style['width'] = '90%'
 // document.body.appendChild(canvas)
 
 canvas.width = 1000;

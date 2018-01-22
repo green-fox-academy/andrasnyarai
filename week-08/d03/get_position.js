@@ -7,7 +7,6 @@ let button = document.querySelector('button:first-of-type')
 
 button.addEventListener('click', function () {
     city = input.value
-    console.log(city)
     call()
 })     
 
@@ -24,8 +23,6 @@ function call () {
       }
     }).done(function(result) {
     
-    console.log(result.Results)
-
     var lon = result.Results[0].lon
     var lat = result.Results[0].lat
 
