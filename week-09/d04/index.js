@@ -163,34 +163,6 @@ app.post('/translate', function (req, res) {
     }
 })
 
-
-// ub
-
-// Create a POST /translate endpoint
-// That receives a simple json object:
-// {
-//   "text": "Ez egy példamondat. Remélem célbatalál.",
-//   "lang": "hu"
-// }
-// And responds with the translated text and its language:
-// {
-//   "translated": "Evez evegy pévéldavamovondavat. Revemévélevem cévélbavavtavalávál.",
-//   "lang": "teve"
-// }
-// from hungarian translate to teve language
-// from english translate to any form of gibberish:
-// https://www.wikiwand.com/en/Gibberish_(language_game)
-// if the input doesnt contain the text (and the language) or its empty, respond with:
-// {
-//   "error": "I can't translate that!"
-// }
-
-
-
-
-
-
-
 app.listen('8080', function() {
     console.log('server is on the fly...')
 })
