@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Radio Player</title>
+    <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Share+Tech+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.png"/>
+    <script language="javascript" type="text/javascript" src="p5.js"></script>
+    <script language="javascript" type="text/javascript" src="p5.dom.js"></script>
+    <script language="javascript" type="text/javascript" src="p5.sound.js"></script>
+</head>
+<body>
+    <div class="modal create">
+        <img src="icons/cross.svg" style="width: 30px; height: 30px">
+        <input placeholder="what name?">
+        <button>create playlist</button>
+    </div>
+    <div class="modal add">
+        <img src="icons/cross.svg" style="width: 30px; height: 30px">
+        <input placeholder="which tracklist?">
+        <button>add track</button>
+    </div>
+    <div class="wrapper">
+        <div class="clear">
+            <div class="left">
+                <div class="notific">
+                    <div>
+                        <img src="icons/radio.gif">
+                        <div id="visualisation"></div>
+                        <p>
+                            <a><em>playlists</em></a>
+                            <img src="icons/plus.svg" style="width: 30px; height: 30px">
+                        </p>
+                    </div>
+                    <div class="albumart"><img></div>
+                </div>
+                <div class="playlists">
+                    <div class="scroll">
+                        <div>
+                            <a>all tracks</a>
+                            <img src="icons/plus.svg" style="width: 30px; height: 30px; opacity: 0;">
+                        </div>
+                        <div>
+                            <a>favorites</a>
+                            <img src="icons/plus.svg" style="width: 30px; height: 30px; opacity: 0;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="current">
+                    <div>
+                        <p><em>title of the track</em></p>
+                        <p>artist</p>
+                    </div>
+                    <div>
+                        <img src="icons/plus.svg" style="width: 30px">
+                        <img src="icons/star.svg" style="width: 30px; margin-left: 5px">
+                    </div>
+                </div>
+                <div class="tracks">
+                    <div class="scroll"></div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <audio controls preload="metadata" controlsList="nodownload" >
+            </audio>
+            <div><img src="icons/rewind.svg"></div>
+            <div><img src="icons/forward.svg"></div>
+            <div><img src="icons/shuffle.svg"></div>
+        </footer>
+        <script src="radio.js"></script>
+    </div>
+</body>
+</html>
