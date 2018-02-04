@@ -15,7 +15,10 @@ function deletePost (e) {
         if(httpRequest.readyState == 4 && httpRequest.status == 200) {
             let item = e.target.parentNode.parentNode.parentNode
             let parent = item.parentNode
-            parent.removeChild(item)
+            item.classList.add('remove')
+            setTimeout(() => {
+                parent.removeChild(item)
+            }, 2000);
         }
     }
     httpRequest.send(null);

@@ -16,10 +16,10 @@ const conn = mysql.createConnection({
 
 conn.connect(function(err){
   if(err){
-    console.log("Error connecting to Database !");
+    console.log("Can't connect to db!");
     return;
   }
-  console.log("Connection established !");
+  console.log("Server is on the air...");
 });
 
 app.use(bodyParser.json());

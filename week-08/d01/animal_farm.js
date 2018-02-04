@@ -17,6 +17,9 @@ class Animal {
     }
 }
 
+module.exports = Animal
+
+
 class Farm {
     constructor (freeSpaces) {
         this.spaces = freeSpaces
@@ -75,8 +78,9 @@ class Farm {
     }
 }
 
-const SheepFarm = new Farm(20);
+// const SheepFarm = new Farm(20);
 
-const button = document.querySelector('button');
-let progress = SheepFarm.progress.bind(SheepFarm)
-button.addEventListener('click', progress)
+// const button = document.querySelector('button');
+// let progress = SheepFarm.progress.bind(SheepFarm)
+// button.addEventListener('click', progress)
+

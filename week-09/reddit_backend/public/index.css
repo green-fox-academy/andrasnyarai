@@ -1,3 +1,7 @@
+:root {
+    --main: #fd3a11;
+    --side: #fff;
+}
 * {
     padding: 0;
     margin: 0;
@@ -51,7 +55,7 @@ header > p:last-of-type {
     bottom: 20px;
 }
 header em {
-    color: #fd3a11;
+    color: var(--main);
 }
 .main-container {
     width: 65%;
@@ -71,7 +75,7 @@ header em {
     cursor: url('cursor.png'), auto;
 }
 .post {
-    background: #fff;
+    background: var(--side);
     border-radius: 3px;
     display: flex;
     width: 100%;
@@ -88,7 +92,7 @@ header em {
 }
 .post > div:first-child a:first-child:active,
 .post > div:first-child a:last-child:active {
-    color: #fd3a11;
+    color: var(--main);
 }
 .post > div:first-child a:first-child:hover,
 .post > div:first-child a:last-child:hover {
@@ -122,7 +126,7 @@ header em {
     cursor: pointer;
 }
 .post > div:last-child > p:last-of-type > a ~ a:active {
-    color: #fd3a11;
+    color: var(--main);
 }
 
     .main_login {
@@ -143,7 +147,7 @@ header em {
         user-select: none;
     }
     .account:active, .back:active {
-        color: #fd3a11;
+        color: var(--main);
     }
     .account:hover, .back:hover {
         cursor: pointer;
@@ -173,8 +177,6 @@ header em {
         width: 100%;
         margin-top: 5px;
     }
-    .login .button span {
-    }
     .lightning {
         animation: lightning 2.5s infinite 1s;
     }
@@ -183,7 +185,7 @@ header em {
     }
 
     .form {
-        background-color: #fff;
+        background-color: var(--side);
         display: flex;
         flex-direction: column;
         padding: 5px;
@@ -212,10 +214,10 @@ header em {
     margin-bottom: 1.6%;
     padding: 10px;
     background-color: rgb(117, 41, 213);
-    color: #fff;
+    color: var(--side);
     letter-spacing: 1vw;
     text-indent: 1vw;
-    outline: 0.1em dotted #fff;
+    outline: 0.1em dotted var(--side);
     outline-offset: -0.1em;
     border-radius: 3px;
     text-align: center;
@@ -230,7 +232,7 @@ header em {
     margin-right: 1.6%;
     float: right;
     width: 30%;
-    background: #fff;
+    background: var(--side);
     display: flex;
     flex-direction: column;
     border-radius: 3px;
@@ -303,7 +305,7 @@ li::before {
     .side-container > div:last-child {
         padding: 10px;
         border-radius: 3px;
-        background: #fff;
+        background: var(--side);
         position: absolute;
         transform: translate(116%, -1%);
         overflow-y: scroll;

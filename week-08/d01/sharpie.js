@@ -19,24 +19,21 @@ class Sharpie {
     }
     use () {
         if (this.inkAmount <= this.width) {
-            console.log('empty')
             this.inkAmount = 0
         } else {
             this.inkAmount -= this.width
         }
     }
-}
-
-function useAll (item) {
-    let originalAmount = item.inkAmount
-    for (let i = 0; i <= (originalAmount / item.width); i++) {
-        console.log(item.inkAmount)
-        item.use()
+    useAll () {
+        let originalAmount = this.inkAmount
+        for (let i = 0; i <= (originalAmount / this.width); i++) {
+            this.use()
+        }
     }
 }
 
 let mySharpie = new Sharpie ('pink', 3)
 
-console.log(mySharpie.inkAmount)
-useAll(mySharpie)
-console.log(mySharpie.inkAmount)
+mySharpie.useAll()
+
+module.exports = Sharpie
