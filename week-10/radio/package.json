@@ -20,7 +20,7 @@
     "iscroll": "^5.2.0",
     "musicmetadata": "^2.0.5",
     "mysql": "^2.15.0",
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.14.12"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",

@@ -97,11 +97,9 @@ function loadnext () {
                 next(showcase, artist, title, album, s_id, fav)
                 array[index + 1].classList.add('selected')
                 status = false
-    
             }
         })
     }
-    
 }
 
 function loadprev () {
@@ -150,9 +148,6 @@ function loadprev () {
     }
 }
 
-audio.addEventListener('ended', loadnext)
-audio.addEventListener('loadstart', setCurrent)
-
 function gettingAllTracks () {
 
     let httpRequest = new XMLHttpRequest();
@@ -168,7 +163,6 @@ function gettingAllTracks () {
     }
     httpRequest.send();
 }
-
 
 function removeSelected (childrenList) {
     let arrayOfchildren = Array.from(childrenList);
@@ -195,10 +189,189 @@ function refreshMain (area) {
     }
 }
 
-let trackAddButton = document.querySelector('.current img:first-of-type')
-trackAddButton.addEventListener('click', function () {
-    document.querySelector('.modal.add').classList.add('visible')
-})
+function onstart() {
+    document.querySelector('.left .scroll > div').classList.add('selected')
+}
+
+function shuffleToggle () {
+  let status = true
+  if (!shuffle && status) {
+      shuffleButton.setAttribute('src', 'icons/shuffle_on.svg')
+      shuffle = true, status = false
+  }
+  if (shuffle && status) {
+      shuffleButton.setAttribute('src', 'icons/shuffle.svg')
+      shuffle = false, status = false
+  }
+}
+
+function generateTags (musicdata) {
+  let parent = document.querySelector('.right .scroll')
+  musicdata.forEach(function (item, index){
+
+      let div = document.createElement('div')
+      if (`http://localhost:8080/music/${item.url}` === decodeURIComponent(audio.src)) {
+        div.classList.add('selected')
+      }
+      let pOne = document.createElement('p')
+      let pTwo = document.createElement('p')
+      let aOne = document.createElement('a')
+      let aTwo = document.createElement('a')
+
+      aOne.textContent = index + 1 + '.'
+      aTwo.textContent = item.title
+      pTwo.textContent = setDuration(item.duration)
+      div.dataset.s_id = item.s_id
+      div.dataset.url = item.url
+      div.dataset.artist = item.artist
+      div.dataset.album = item.album
+      div.dataset.title = item.title
+      div.dataset.fav = item.fav
+      div.addEventListener('click', next.bind(this, item.url, item.artist, item.title, item.album, item.s_id, item.fav))
+      div.addEventListener('click', function (e) {
+          removeSelected(e.target.parentNode.children)
+          e.target.classList.add('selected')
+      })
+      pOne.appendChild(aOne)
+      pOne.appendChild(aTwo)
+      div.appendChild(pOne)
+      div.appendChild(pTwo)
+      parent.appendChild(div)
+  })
+}
+
+function generatePlaylistTags(playlists) {
+  let container = document.querySelector('.left .playlists .scroll')
+
+  playlists.forEach( function (item) {
+      let newDiv = document.createElement('div')
+      let newA = document.createElement('a')
+      let newImg = document.createElement('img')
+      newImg.setAttribute('src', 'icons/cross.svg')
+      newImg.setAttribute('style', 'width: 30px; height: 30px;')
+      newImg.addEventListener('click', function (e) {
+
+          e.stopPropagation()
+
+          let objective = e.target.parentNode.dataset.p_id
+
+          let httpRequest = new XMLHttpRequest();
+          httpRequest.open('POST', `/delete/${objective}`);
+          httpRequest.setRequestHeader("Accept", "application/json");
+          httpRequest.onreadystatechange = function() {
+          
+              if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+                  let data = JSON.parse(httpRequest.response)
+                  console.log(JSON.parse(httpRequest.response))
+              }
+          }
+          httpRequest.send();
+
+          e.target.parentNode.parentNode.removeChild(e.target.parentNode)
+
+      })
+      newA.textContent = item.name
+      newA.style.pointerEvents = 'none'
+      newDiv.dataset.p_id = item.name
+
+      newDiv.appendChild(newA)
+      newDiv.appendChild(newImg)
+      container.appendChild(newDiv)
+  })
+
+  settingPlaylistEventListeners()  
+}
+
+function gettingALLPlaylists () {
+
+  let httpRequest = new XMLHttpRequest();
+  httpRequest.open('GET', '/playlists');
+  httpRequest.setRequestHeader("Accept", "application/json");
+  httpRequest.onreadystatechange = function() {
+  
+      if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+          let data = JSON.parse(httpRequest.response)
+          console.log(JSON.parse(httpRequest.response))
+          generatePlaylistTags(data)
+      }
+  }
+  httpRequest.send();
+}
+
+function settingPlaylistEventListeners () {
+  let playlistsNodes = document.querySelector('.left .playlists .scroll').children
+  let playlists = Array.from(playlistsNodes)
+
+  playlists.forEach( function (item, index) {
+
+      item.addEventListener('click', function(e) {
+          removeSelected(e.target.parentNode.children)
+          e.target.classList.add('selected')
+
+          let svgs = document.querySelectorAll('.playlists div > img')
+          
+          svgs.forEach(function (item, index) {
+              item.src = 'icons/cross.svg'
+          })
+      })
+
+      if (index == 0) {
+          item.addEventListener('click', function() {
+
+              refreshMain('.right .scroll')
+              
+              gettingAllTracks()
+          })
+
+      }
+      if (index == 1) {
+          item.addEventListener('click', function () {
+              refreshMain('.right .scroll')
+
+              let httpRequest = new XMLHttpRequest();
+              httpRequest.open('GET', '/music/favourites');
+              httpRequest.setRequestHeader("Accept", "application/json");
+              httpRequest.setRequestHeader("favourites", "true");
+              httpRequest.onreadystatechange = function() {
+              
+                  if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+                      let data = JSON.parse(httpRequest.response)
+                      console.log(JSON.parse(httpRequest.response))
+                      generateTags(data)
+                  }
+              }
+              httpRequest.send();
+          })
+      }
+      if (index > 1) {
+          item.addEventListener('click', function (e) {
+              refreshMain('.right .scroll')
+
+              let objective = e.target.dataset.p_id
+
+              let httpRequest = new XMLHttpRequest();
+              httpRequest.open('GET', `/music/${objective}`);
+              httpRequest.setRequestHeader("Accept", "application/json");
+              httpRequest.onreadystatechange = function() {
+              
+                  if(httpRequest.readyState == 4 && httpRequest.status == 200) {
+                      let data = JSON.parse(httpRequest.response)
+                      console.log(JSON.parse(httpRequest.response))
+                      generateTags(data)
+                  }
+              }
+              httpRequest.send();
+
+              e.target.children[1].setAttribute('src', 'icons/cross_black.svg')
+          })
+      }
+  })
+}
+
+//eventlisteners
+
+audio.addEventListener('ended', loadnext)
+audio.addEventListener('loadstart', setCurrent)
 
 let starButton = document.querySelector('.current img:last-of-type')
 starButton.addEventListener('click', function () {
@@ -227,7 +400,6 @@ starButton.addEventListener('click', function () {
     httpRequest.send();
 })
 
-
 let trackCreateButton = document.querySelector('.notific > div:first-child > p > img:first-of-type')
 trackCreateButton.addEventListener('click', function () {
     document.querySelector('.modal.create').classList.add('visible')
@@ -238,12 +410,15 @@ unbutton1.addEventListener('click', function () {
     document.querySelector('.modal.create').classList.remove('visible')
 })
 
+let trackAddButton = document.querySelector('.current img:first-of-type')
+trackAddButton.addEventListener('click', function () {
+    document.querySelector('.modal.add').classList.add('visible')
+})
+
 let unbutton2 = document.querySelector('.modal.add > img')
 unbutton2.addEventListener('click', function () {
     document.querySelector('.modal.add').classList.remove('visible')
 })
-
-
 
 let modalAdd = document.querySelector('.modal.add button')
 modalAdd.addEventListener('click', function () {
@@ -286,22 +461,9 @@ modalCreate.addEventListener('click', function () {
         httpRequest.send(JSON.stringify(input));
 
         refreshMain('.left .scroll')
-        gettingALLPlaylists()        
-
+        gettingALLPlaylists()
     }
 })
-
-function shuffleToggle () {
-    let status = true
-    if (!shuffle && status) {
-        shuffleButton.setAttribute('src', 'icons/shuffle_on.svg')
-        shuffle = true, status = false
-    }
-    if (shuffle && status) {
-        shuffleButton.setAttribute('src', 'icons/shuffle.svg')
-        shuffle = false, status = false
-    }
-}
 
 let rightButton = document.querySelector('footer div:nth-of-type(2n)')
 rightButton.addEventListener('click', loadnext)
@@ -312,252 +474,54 @@ leftButton.addEventListener('click', loadprev)
 let shuffleButton = document.querySelector('footer div:nth-of-type(3n) img')
 shuffleButton.addEventListener('click', shuffleToggle)
 
-function generateTags (musicdata) {
-    let parent = document.querySelector('.right .scroll')
-    musicdata.forEach(function (item, index){
-
-        let div = document.createElement('div')
-        let pOne = document.createElement('p')
-        let pTwo = document.createElement('p')
-        let aOne = document.createElement('a')
-        let aTwo = document.createElement('a')
-
-        aOne.textContent = index + 1 + '.'
-        aTwo.textContent = item.title
-        pTwo.textContent = setDuration(item.duration)
-        div.dataset.s_id = item.s_id
-        div.dataset.url = item.url
-        div.dataset.artist = item.artist
-        div.dataset.album = item.album
-        div.dataset.title = item.title
-        div.dataset.fav = item.fav
-        div.addEventListener('click', next.bind(this, item.url, item.artist, item.title, item.album, item.s_id, item.fav))
-        div.addEventListener('click', function (e) {
-            removeSelected(e.target.parentNode.children)
-            e.target.classList.add('selected')
-        })
-        pOne.appendChild(aOne)
-        pOne.appendChild(aTwo)
-        div.appendChild(pOne)
-        div.appendChild(pTwo)
-        parent.appendChild(div)
-    })
-}
-
-function generatePlaylistTags(playlists) {
-    let container = document.querySelector('.left .playlists .scroll')
-
-    playlists.forEach( function (item) {
-        let newDiv = document.createElement('div')
-        let newA = document.createElement('a')
-        let newImg = document.createElement('img')
-        newImg.setAttribute('src', 'icons/cross.svg')
-        newImg.setAttribute('style', 'width: 30px; height: 30px;')
-        newImg.addEventListener('click', function (e) {
-
-            e.stopPropagation()
-
-            let objective = e.target.parentNode.dataset.p_id
-
-            let httpRequest = new XMLHttpRequest();
-            httpRequest.open('POST', `/delete/${objective}`);
-            httpRequest.setRequestHeader("Accept", "application/json");
-            httpRequest.onreadystatechange = function() {
-            
-                if(httpRequest.readyState == 4 && httpRequest.status == 200) {
-                    let data = JSON.parse(httpRequest.response)
-                    console.log(JSON.parse(httpRequest.response))
-                }
-            }
-            httpRequest.send();
-
-            e.target.parentNode.parentNode.removeChild(e.target.parentNode)
-
-        })
-        newA.textContent = item.name
-        newA.style.pointerEvents = 'none'
-        newDiv.dataset.p_id = item.name
-
-        newDiv.appendChild(newA)
-        newDiv.appendChild(newImg)
-        container.appendChild(newDiv)
-    })
-
-    settingPlaylistEventListeners()  
-}
-
-gettingAllTracks()
-
-function gettingALLPlaylists () {
-
-    let httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET', '/playlists');
-    httpRequest.setRequestHeader("Accept", "application/json");
-    httpRequest.onreadystatechange = function() {
-    
-        if(httpRequest.readyState == 4 && httpRequest.status == 200) {
-            let data = JSON.parse(httpRequest.response)
-            console.log(JSON.parse(httpRequest.response))
-            generatePlaylistTags(data)
-        }
-    }
-    httpRequest.send();
-}
-
-gettingALLPlaylists()
-
-
-
-function settingPlaylistEventListeners () {
-    let playlistsNodes = document.querySelector('.left .playlists .scroll').children
-    let playlists = Array.from(playlistsNodes)
-
-    playlists.forEach( function (item, index) {
-
-        item.addEventListener('click', function(e) {
-            removeSelected(e.target.parentNode.children)
-            e.target.classList.add('selected')
-
-            let svgs = document.querySelectorAll('.playlists div > img')
-            
-            svgs.forEach(function (item, index) {
-                item.src = 'icons/cross.svg'
-            })
-        })
-
-        if (index == 0) {
-            item.addEventListener('click', function() {
-
-                refreshMain('.right .scroll')
-                
-                gettingAllTracks()
-            })
-
-        }
-        if (index == 1) {
-            item.addEventListener('click', function () {
-                refreshMain('.right .scroll')
-
-                let httpRequest = new XMLHttpRequest();
-                httpRequest.open('GET', '/music/favourites');
-                httpRequest.setRequestHeader("Accept", "application/json");
-                httpRequest.setRequestHeader("favourites", "true");
-                httpRequest.onreadystatechange = function() {
-                
-                    if(httpRequest.readyState == 4 && httpRequest.status == 200) {
-                        let data = JSON.parse(httpRequest.response)
-                        console.log(JSON.parse(httpRequest.response))
-                        generateTags(data)
-                    }
-                }
-                httpRequest.send();
-            })
-        }
-        if (index > 1) {
-            item.addEventListener('click', function (e) {
-                refreshMain('.right .scroll')
-
-                let objective = e.target.dataset.p_id
-
-                let httpRequest = new XMLHttpRequest();
-                httpRequest.open('GET', `/music/${objective}`);
-                httpRequest.setRequestHeader("Accept", "application/json");
-                httpRequest.onreadystatechange = function() {
-                
-                    if(httpRequest.readyState == 4 && httpRequest.status == 200) {
-                        let data = JSON.parse(httpRequest.response)
-                        console.log(JSON.parse(httpRequest.response))
-                        generateTags(data)
-                    }
-                }
-                httpRequest.send();
-
-                e.target.children[1].setAttribute('src', 'icons/cross_black.svg')
-            })
-        }
-    })
-}
-
 window.onkeyup = function(e) {
     let key = e.keyCode
- 
     if (key == 39) {
         loadnext()
     } else if (key == 37) {
         loadprev()
-    } else if (key = 13) {
+    } else if (key == 83) {
         shuffleToggle()
     }
- }
+}
+
+gettingAllTracks()
+gettingALLPlaylists()
+onstart()
 
 // experiments with p5.sound visualisation --- to connect it via MediaStream
 
- let mySound = new Audio('music/02 - Extrasolar.mp3')
-
-
- var canvas = document.querySelector('canvas');
- var audioZ = document.querySelector('audio');
- 
- var stream = audioZ.captureStream();
-
-let v = stream.getAudioTracks()
-
-let sound, sound2, fft, mic;
-
-
-function loaded(){
-    sound.play()
-}
+let fft;
 
 function setup(){
-    sound = loadSound('music/02 - Extrasolar.mp3');
-    sound2 = loadSound('music/07 - Norway (iTunes Session Remix).mp3');
-
-    var cnv = createCanvas(70,70);
-    cnv.mouseClicked(togglePlay);
-    cnv.parent('visualisation')
-
-    mic = new p5.AudioIn
-
-
-
-
-    fft = new p5.FFT();
-    // sound.amp(0.2);
-
-    // fft.amp(1)
-
-    mic = new p5.AudioIn();
-    mic.amp(1)
-    mic.start();
-
-    // fft.srcObject = stream
-    
-    fft.setInput(sound)
-    console.log(fft)
-
-  }
+  let cnv = createCanvas(70,70);
+  cnv.parent('visualisation')
+  fft = new p5.FFT();
   
-  function draw(){
-    background(230, 182, 182);
-    var waveform = fft.waveform();
-    noFill();
-    beginShape();
-    stroke(160, 100, 164);
-    strokeWeight(1);
-    for (var i = 0; i < waveform.length; i++){
-      var x = map(i, 0, waveform.length, 0, width);
-      var y = map( waveform[i], -1, 1, 0, height);
-      vertex(x,y);
-    }
-    endShape();
-  }
-  
-  function togglePlay() {
-    if (sound.isPlaying()) {
-      sound.pause();
-    } else {
-      sound.loop();
-    }
-  }
+  let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  console.log(audioCtx)
+  let source = audioCtx.createMediaElementSource(audio);
+  console.log(source)
+  let analyser = audioCtx.createAnalyser();
+  console.log(analyser)
 
+  source.connect(analyser)
+  fft.analyser = analyser
+  analyser.connect(audioCtx.destination)
+}
+  
+function draw(){
+  background(230, 182, 182);
+  let waveform = fft.waveform();
+  noFill();
+  beginShape();
+  stroke(160, 100, 164);
+  strokeWeight(1);
+  for (let i = 0; i < waveform.length; i++){
+    let x = map(i, 0, waveform.length, 0, width);
+    let y = map( waveform[i], -1, 1, 0, height);
+    vertex(x,y);
+  }
+  endShape();
+}
+  

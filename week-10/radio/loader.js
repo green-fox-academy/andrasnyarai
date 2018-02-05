@@ -2,56 +2,41 @@
 
 const fs = require('fs');
 const mm = require('musicmetadata');
+const mysql = require('mysql')
 
+const conn = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "12345",
+    database: "radio"
+});
 
-let wStream = fs.createWriteStream('output.json', {'flags': 'w'} );
-wStream.write('');
-wStream.end();  
-
+conn.connect(function(err){
+    if(err){
+        console.log("Can't connect to db!");
+        return;
+    }
+  console.log("Connected to db...");
+});
 
 fs.readdir('./music', function (err, files) {
-
-    let all = []
-    
     files.forEach( function (file, index) {
-        
         let readableStream = fs.createReadStream(`./music/${file}`);
-        let writeStream = fs.createWriteStream('output.json', {'flags': 'w'} );
-
-        
-        var parser = mm(readableStream, {duration: true} ,function (err, metadata) {
+        let parser = mm(readableStream, {duration: true} ,function (err, metadata) {
             if (err) throw err;
 
-            let music = {
-                showcase: file,
-                metadata: {
-                    title: metadata.title,
-                    artist: metadata.artist,
-                    album: metadata.album,
-                    duration: metadata.duration
-                }
-            }
-            console.log(metadata.artist)
-            all.push(music)
-            if (index == files.length - 1) {
+            let data  = {url: file,
+                        title: metadata.title,
+                        artist: metadata.artist,
+                        album: metadata.album,
+                        duration: metadata.duration,
+                        fav: 'false'};
 
-                writeStream.write(JSON.stringify(all));
-
-                writeStream.on('finish', () => {  
-                    console.log('wrote all data to file');
-                });
-                
-                writeStream.end();
-            }
-            
-            
-            
-            
-            readableStream.close();
-            
+            conn.query('INSERT INTO songs SET ?', data, function (error, results, fields) {
+              if (error) throw error;
+              console.log(`wrote at ${index} ||| ` + file )
+            });
+            readableStream.close(); 
         });
-    })
-    
-    
-    
+    }) 
 });

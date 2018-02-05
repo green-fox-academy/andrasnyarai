@@ -5,13 +5,7 @@
     --fontsub: #474747;
     --active: #a7af37;
     --ext: #a064a4;
-/* 
-    --main: rgb(230, 182, 182);
-    --side: rgba(238, 103, 186, 0.4);
-    --fontc: #000;
-    --fontsub: #000000;
-    --active: rgb(166, 174, 55);
-    --ext: rgb(160, 100, 164); */
+    --foot: #f45;
 }
 * {
     margin: 0;
@@ -23,19 +17,14 @@ html {
     height: 100%;
     font-size: 20px;
     font-family: 'Cutive Mono', cursive;
-
     min-width:900px;
-    width: auto !important;
-    width:800px;
 }
 body {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: hue-rotate(45deg);
-
-    
+    filter: hue-rotate(45deg);   
 }
 em {
     font-weight: bold;
@@ -45,15 +34,11 @@ em {
     background-color: var(--main);
     border-radius: 3px;
 }
-.scroll {
-}
-
 #visualisation {
     position: absolute;
     top: 15px;
     left: 5.3em;
 }
-
 
     .modal {    
         top: 0;
@@ -70,44 +55,34 @@ em {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-
-        
+        align-items: center;        
     }
     .modal.add {
-        left: 55%;
-        
+        left: 55%;    
     }
     .modal.create {
         left: 25%;
-
     }
     .modal > input {
         padding: 5px;
         font-family: 'Share Tech Mono';
-        
         height: 15%;
         width: 70%;
         margin-bottom: 5px;
-        
     }
     .modal > button {
         font-family: 'Share Tech Mono';
-        
         height: 15%;
         width: 70%;
         background-color: var(--active)
-
     }
     .modal img {
         position: absolute;
         right: 5px;
         top: 5px;
     }
-
     .visible {
         transform: translateY(0);
-
     }
 
 .notific {
@@ -116,14 +91,10 @@ em {
     display: flex;
     justify-content: space-between;
 }
-
     .albumart img {
         width: 120px;
         filter: sepia(1)
-
     }
-
-
     .notific > div:first-child {
         width: 65%;
         padding: 10px;
@@ -140,11 +111,9 @@ em {
         animation: onload 1s;
         transform-origin: bottom right;
     }
-    
     @keyframes onload {
         0% {
             transform: scale(2);
-            
         }
         100%{
             transform: scale(1);
@@ -155,24 +124,21 @@ em {
         background: var(--ext);
         width: unset;
     }
+
 .playlists {
     height: 70%;
     overflow-y: scroll;
-    
 }
-
     .playlists > .scroll > div {
         display: flex;
         justify-content: space-between;
         align-items: center;    
         padding: 10px;
         background-color: var(--side);
-        
     }
     .playlists > .scroll > div:nth-of-type(2n) {
         background-color: var(--main);
     }
-
 
 .current {
     height: 19%;
@@ -190,17 +156,16 @@ em {
         flex-direction: row;
         align-items: center;
     }
+
 .tracks {
     height: 81%;
     overflow-y: scroll;
 }
-
     .tracks > .scroll > div {
         display: flex;
         justify-content: space-between;
         padding: 11px;
         background-color: var(--side);
-        
     }
     .tracks > .scroll > div:nth-of-type(2n) {
         background-color: var(--main);
@@ -209,10 +174,12 @@ em {
         margin-right: 5px;
         color: var(--fontsub)
     }
-    .tracks > .scroll p, .left .scroll a, .left .scroll div:first-child img,  .left .scroll div:first-child + div img{
+    .tracks > .scroll p,
+    .left .scroll a,
+    .left .scroll div:first-child img,
+    .left .scroll div:first-child + div img{
         pointer-events: none;
     }
-
     .tracks > .scroll > div.selected {
         background-color: var(--active)
     }
@@ -242,95 +209,77 @@ em {
 footer {
     border-radius: 0 0 3px 3px;
     height: 50px;
-    background-color: #f45;
+    background-color: var(--foot);
     position: relative;
     user-select: none;
-    /* filter: sepia(5) hue-rotate(-90deg); */
 }
+    footer div:first-of-type {
+        position: absolute;
+        top: 50%;
+        left: 1.5rem;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+    footer div:nth-of-type(2n) {
+        position: absolute;
+        top: 50%;
+        left: 5rem;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+    footer div:last-of-type {
+        position: absolute;
+        top: 50%;
+        right: .5vw;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+    footer div:first-of-type img:active, footer div:first-of-type + div img:active {
+        background-color: var(--ext);
+    }
+
 audio {
     width: 100%;
     opacity: 0.5;
     display: flex;
-
 }
-footer div:first-of-type {
-    position: absolute;
-    top: 50%;
-    left: 1.5rem;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-footer div:nth-of-type(2n) {
-    position: absolute;
-    top: 50%;
-    left: 5rem;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-footer div:last-of-type {
-    position: absolute;
-    top: 50%;
-    right: .5vw;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-footer div:first-of-type img:active, footer div:first-of-type + div img:active {
-    background-color: var(--ext);
-}
-
     audio::-webkit-media-controls-panel {
         height: 50px;
     }
     audio::-webkit-media-controls-play-button {
+        cursor: pointer;
         order: 0;
         margin-left: 50px;
-        margin-right: 50px;
-        
+        margin-right: 50px; 
     }
     audio::-webkit-media-controls-current-time-display {
         order: 1;
-        
     }
     audio::-webkit-media-controls-timeline {
+        cursor: pointer;
         order: 2;
     }
     audio::-webkit-media-controls-time-remaining-display {
         order: 3;
     }
     audio::-webkit-media-controls-mute-button {
+        cursor: pointer;
         order: 4;
         margin-left: 0.5vw;
         margin-right: -1vw;
     }
     audio::-webkit-media-controls-volume-slider {
+        cursor: pointer;
         margin-right: 50px;
         order: 5;
     }
-
-
-
-audio::-webkit-media-controls-timeline-container {
-    
-}
-audio::-webkit-media-controls-volume-slider-container {
-    
-}
-/* audio::-webkit-media-controls-seek-back-button {
-    -webkit-appearance: media-seek-back-button;
-}
-audio::-webkit-media-controls-seek-forward-button {
-    -webkit-appearance: button-arrow-previous;
-} */
-
-/* audio::-webkit-media-controls-rewind-button */
-
 
 ::-webkit-scrollbar {
     width: 14px;
     height: 18px;
 }
 ::-webkit-scrollbar-thumb {
-    height: 6px;
+    min-height: 80px;
     border: 4px solid rgba(0, 0, 0, 0);
     background-clip: padding-box;
     -webkit-border-radius: 7px;
@@ -344,4 +293,8 @@ audio::-webkit-media-controls-seek-forward-button {
 }
 ::-webkit-scrollbar-corner {
     background-color: transparent;
+}
+
+img[src$='.svg'], .scroll > div {
+    cursor: pointer;
 }
