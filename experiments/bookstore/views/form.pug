@@ -1,0 +1,19 @@
+form
+    label(for='category') [Category:
+    select(type='text', id='category_select', name='category')
+        option= '-'
+        each variation in dataFields
+            option= variation
+    label(for='price_low') {Price lower than:
+    - let p = 270
+    select(type='text', id='price_lower', name='price_low')
+        option= '-'
+        while p > 50
+            option= p -= 20
+    label(for='price_high') /Price higher than:
+    - let s = 20
+    select(type='text', id='price_higher', name='price_high')
+        option= '-'
+        while s < 230
+            option= s += 20
+    button Filter(s)
