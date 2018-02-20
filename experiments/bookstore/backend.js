@@ -37,13 +37,12 @@ conn.query(`select author.aut_name, book_name, category.cate_descrip,
  publisher.pub_name, book_price from book_mast join author
   on book_mast.aut_id = author.aut_id join category on category.cate_id
 = book_mast.cate_id join publisher on publisher.pub_id = book_mast.pub_id;`, (error, rows) => {
-    if (error) throw error;
-    allBooks = rows
-})
+        if (error) throw error;
+        allBooks = rows
+    })
 
 app.get('/filter', (req, res) => {
     let out = 0
-    // let status = false
     let filter = ''
     let and1 = ''
     let and2 = ''
@@ -51,15 +50,15 @@ app.get('/filter', (req, res) => {
     let category = req.query.category
     let lower = req.query.lower
     let higher = req.query.higher
-    
-    category === '-' 
-        ? filterA = '' 
-        : (filterA =  `cate_descrip = ${conn.escape(category)}`, filter = 'WHERE', out++)
-    lower === '-' 
-        ? filterB = '' 
+
+    category === '-'
+        ? filterA = ''
+        : (filterA = `cate_descrip = ${conn.escape(category)}`, filter = 'WHERE', out++)
+    lower === '-'
+        ? filterB = ''
         : (filterB = `book_price < ${conn.escape(Number(lower))}`, filter = 'WHERE', out++)
-    higher === '-' 
-        ? filterC = '' 
+    higher === '-'
+        ? filterC = ''
         : (filterC = `book_price > ${conn.escape(Number(higher))}`, filter = 'WHERE', out++)
 
     if (out === 3) {
@@ -80,9 +79,9 @@ app.get('/filter', (req, res) => {
      on book_mast.aut_id = author.aut_id join category on category.cate_id
    = book_mast.cate_id join publisher on publisher.pub_id = book_mast.pub_id
     ${filter} ${filterA} ${and1} ${filterB} ${and2} ${filterC}`, (err, rows) => {
-        res.status(200)
-        res.send(JSON.stringify(rows))
-    })
+            res.status(200)
+            res.send(JSON.stringify(rows))
+        })
 })
 
 app.get('/', (req, res) => {
