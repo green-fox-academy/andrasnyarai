@@ -1,0 +1,27 @@
+{
+  "name": "readme",
+  "version": "1.0.0",
+  "description": "markdown syntax",
+  "main": "none",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenfox-academy/andrasnyarai.git"
+  },
+  "keywords": [
+    "md",
+    "greenfox",
+    "twelveweeks"
+  ],
+  "author": "Andris Nyárai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greenfox-academy/andrasnyarai/issues"
+  },
+  "homepage": "https://github.com/greenfox-academy/andrasnyarai#readme",
+  "dependencies": {
+    "devicon": "^2.0.0"
+  }
+}
